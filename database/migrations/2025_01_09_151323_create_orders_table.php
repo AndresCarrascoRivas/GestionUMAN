@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('fechaIngreso');
             $table->date('fechaReparacion')->nullable();
             $table->longText('descripcionFalla')->nullable();
+            $table->longText('DetalleReparacion')->nullable();
             $table->integer('hReparacion')->nullable();
         });
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -18,44 +20,24 @@ class OrdenController extends Controller
         return view('orders.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
-        $order = new Order();
-
-        $order->serialUb = $request->serialUb;
-        $order->serialTms = $request->serialTms;
-        $order->serialUps = $request->serialUps;
-        $order->versionRpi = $request->versionRpi;
-        $order->versionFirmware = $request->versionFirmware;
-        $order->tecnico = $request->tecnico;
-        $order->faena = $request->faena;
-        $order->falla = $request->falla;
-        $order->descripcionFalla = $request->descripcionFalla;
-        $order->fechaIngreso = $request->fechaIngreso;
-        $order->hReparacion = $request->hReparacion;
-
-        $order->save();
-
+        Order::create($request->all());
         return redirect('/ordenes');
     }
 
-    public function show($order)
+    public function show(Order $order)
     {
-        $order = Order::find($order);
-
         return view('orders.show', compact('order'));
     }
 
-    public function edit($order)
+    public function edit(Order $order)
     {
-        $order = Order::find($order);
         return view('orders.edit', compact('order'));
     }
 
-    public function update(Request $request, $order)
+    public function update(UpdateOrderRequest $request, Order $order)
     {
-        $order = Order::find($order);
-
         $order->serialUb = $request->serialUb;
         $order->serialTms = $request->serialTms;
         $order->serialUps = $request->serialUps;
@@ -65,6 +47,7 @@ class OrdenController extends Controller
         $order->faena = $request->faena;
         $order->falla = $request->falla;
         $order->descripcionFalla = $request->descripcionFalla;
+        $order->DetalleReparacion = $request->DetalleReparacion;
         $order->fechaIngreso = $request->fechaIngreso;
         $order->fechaReparacion = $request->fechaReparacion;
         $order->hReparacion = $request->hReparacion;

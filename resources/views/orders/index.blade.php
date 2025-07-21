@@ -12,7 +12,7 @@
         @foreach ($orders as $order)
             <li>
                 <a href="{{route('ordenes.show', $order)}}">
-                    {{ $order->serialUb }}
+                    {{ $order->id }} - {{ $order->serialUb }}
                 </a>
             </li>
         @endforeach

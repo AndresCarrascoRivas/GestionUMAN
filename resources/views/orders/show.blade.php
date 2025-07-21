@@ -30,6 +30,9 @@
         <b>Descripcion Falla:</b> {{ $order->descripcionFalla }}
     </p>
     <p>
+        <b>Detalle Reparacion:</b> {{ $order->DetalleReparacion }}
+    </p>
+    <p>
         <b>Horas de trabajo:</b> {{ $order->hReparacion}}
     </p>
 

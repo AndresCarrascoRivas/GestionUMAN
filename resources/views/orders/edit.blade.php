@@ -12,6 +12,10 @@
             <input type="number" name="serialUb" value="{{$order->serialUb}}">
         </label>
 
+        @error('serialUb')
+            <p>{{$message}}</p>
+        @enderror
+
         <br>
         <br>
 
@@ -53,6 +57,10 @@
             <input type="number" name="tecnico" value="{{$order->tecnico}}">
         </label>
 
+        @error('tecnico')
+            <p>{{$message}}</p>
+        @enderror
+
         <br>
         <br>
 
@@ -60,6 +68,10 @@
             Faena:
             <input type="number" name="faena" value="{{$order->faena}}">
         </label>
+
+        @error('faena')
+            <p>{{$message}}</p>
+        @enderror
 
         <br>
         <br>
@@ -74,8 +86,20 @@
 
         <label>
             Descripcion Falla:
-            <textarea name="descripcionFalla">{{$order->descripcionFalla}} </textarea>
+            <textarea name="descripcionFalla">{{old('descripcionFalla', $order->descripcionFalla)}} </textarea>
         </label>
+
+        <br>
+        <br>
+
+        <label>
+            Detalle Reparacion:
+            <textarea name="DetalleReparacion">{{old('DetalleReparacion', $order->DetalleReparacion ) }} </textarea>
+        </label>
+
+        @error('DetalleReparacion')
+            <p>{{$message}}</p>
+        @enderror
 
         <br>
         <br>
@@ -93,6 +117,10 @@
         </label>
         <input type="date" id="fechaIngreso" name="fechaIngreso" value="{{$order->fechaIngreso}}">
 
+        @error('fechaIngreso')
+            <p>{{$message}}</p>
+        @enderror
+
         <br>
         <br>
 
@@ -100,6 +128,10 @@
             Fecha de Reparacion:
         </label>
         <input type="date" id="fechaReparacion" name="fechaReparacion" value="{{$order->fechaReparacion}}">
+
+        @error('fechaReparacion')
+            <p>{{$message}}</p>
+        @enderror
 
         <br>
         <br>

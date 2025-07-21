@@ -7,15 +7,19 @@
 
         <label>
             Serial UB:
-            <input type="number" name="serialUb"  min="1000">
+            <input type="number" name="serialUb" min="1000" value="{{old('serialUb')}}">
         </label>
+
+        @error('serialUb')
+            <p>{{$message}}</p>
+        @enderror
 
         <br>
         <br>
 
         <label>
             Serial TMS:
-            <input type="number" name="serialTms">
+            <input type="number" name="serialTms" value="{{old('serialTms')}}">
         </label>
 
         <br>
@@ -23,7 +27,7 @@
 
         <label>
             Serial UPS:
-            <input type="number" name="serialUps">
+            <input type="number" name="serialUps" value="{{old('serialUps')}}">
         </label>
 
         <br>
@@ -31,7 +35,7 @@
 
         <label>
             Version RPI:
-            <input type="text" name="versionRpi">
+            <input type="text" name="versionRpi" value="{{old('versionRpi')}}">
         </label>
 
         <br>
@@ -39,7 +43,7 @@
 
         <label>
             Version Firmware:
-            <input type="text" name="versionFirmware">
+            <input type="text" name="versionFirmware" value="{{old('versionFirmware')}}">
         </label>
 
         <br>
@@ -47,23 +51,31 @@
 
         <label>
             Técnico:
-            <input type="number" name="tecnico">
+            <input type="number" name="tecnico" value="{{old('tecnico')}}">
         </label>
+
+        @error('tecnico')
+            <p>{{$message}}</p>
+        @enderror
 
         <br>
         <br>
 
         <label>
             Faena:
-            <input type="number" name="faena">
+            <input type="number" name="faena" value="{{old('faena')}}">
         </label>
+
+        @error('faena')
+            <p>{{$message}}</p>
+        @enderror
 
         <br>
         <br>
 
         <label>
             Falla:
-            <input type="text" name="falla">
+            <input type="text" name="falla" value="{{old('falla')}}">
         </label>
 
         <br>
@@ -71,7 +83,7 @@
 
         <label>
             Descripcion Falla:
-            <textarea name="descripcionFalla"></textarea>
+            <textarea name="descripcionFalla">{{old('descripcionFalla')}}</textarea>
         </label>
 
         <br>
@@ -79,7 +91,7 @@
 
         <label>
             Horas de Reparacion:
-            <input type="text" name="hReparacion">
+            <input type="text" name="hReparacion" value="{{old('hReparacion')}}">
         </label>
 
         <br>
@@ -88,18 +100,14 @@
         <label for="fechaIngreso">
             Fecha de ingreso:
         </label>
-        <input type="date" id="fechaIngreso" name="fechaIngreso">
+        <input type="date" id="fechaIngreso" name="fechaIngreso" value="{{old('fechaIngreso')}}">
+
+        @error('fechaIngreso')
+            <p>{{$message}}</p>
+        @enderror
 
         <br>
         <br>
-
-{{--         <label for="fechaReparacion">
-            Fecha de Reparacion:
-        </label>
-        <input type="date" id="fechaReparacion" name="fechaReparacion">
-
-        <br>
-        <br> --}}
 
         <button type="submit">
             Crear Orden

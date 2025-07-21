@@ -10,6 +10,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'fechaReparacion'
+    ];
+
     /* protected $table = 'orders'; */
 
     protected function falla(): Attribute
