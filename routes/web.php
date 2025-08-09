@@ -15,4 +15,3 @@ Route::resource('ordenes', OrdenController::class)->parameters([
 Route::resource('equiposUb', EquipoUbController::class)->parameters([
     'equiposUb' => 'equipoUb'
 ]);
-

@@ -10,25 +10,23 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'fechaReparacion'
-    ];
-
     protected $fillable = [
     'serialUb',
-    'serialTms',
-    'serialUps',
-    'versionRpi',
-    'versionFirmware',
+    'estado',
     'tecnico',
     'faena',
     'falla',
     'descripcionFalla',
-    'DetalleReparacion',
     'fechaIngreso',
+    'detalleReparacion',
     'fechaReparacion',
     'hReparacion',
-];
+    'serialPcbUman',
+    'serialUps',
+    'versionRpi',
+    'versionFirmware',
+    ];
+
 
     /* protected $table = 'orders'; */
 

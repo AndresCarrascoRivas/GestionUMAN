@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('serialUb')->primary();
             $table->string('estado')->default('operativo');
             $table->string('versionUman');
-            $table->string('versionraspberry');
-            $table->string('versioUps')->nullable();
+            $table->string('versionRpi');
+            $table->string('versionUps')->nullable();
             $table->string('PcbUman');
             $table->string('PcbAntena');
             $table->string('Radiometrix');

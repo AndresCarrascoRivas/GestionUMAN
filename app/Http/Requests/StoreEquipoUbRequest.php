@@ -24,8 +24,8 @@ class StoreEquipoUbRequest extends FormRequest
         return [
             'serialUb' => 'required|string|max:10|unique:equipo_ubs,serialUb',
             'versionUman' => 'required|in:UMAN BLUE,UMAN CM4',
-            'versionraspberry' => 'required',
-            'versioUps' => 'required_if:versionUman,UMAN BLUE|nullable',
+            'versionRpi' => 'required',
+            'versionUps' => 'required_if:versionUman,UMAN BLUE|nullable',
             'PcbUman' => 'required',
             'PcbAntena' => 'required',
             'Radiometrix' => 'required',

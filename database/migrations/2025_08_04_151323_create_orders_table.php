@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('serialUb');
             $table->foreign('serialUb')->references('serialUb')->on('equipo_ubs')->onDelete('cascade');
-            $table->integer('serialTms')->nullable();
-            $table->integer('serialUps')->nullable();
+            $table->string('estado');
+            $table->string('serialPcbUman')->nullable();
+            $table->string('serialUps')->nullable();
             $table->string('versionRpi')->nullable();
             $table->string('versionFirmware')->nullable();
             $table->integer('tecnico');
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->date('fechaIngreso');
             $table->date('fechaReparacion')->nullable();
             $table->longText('descripcionFalla')->nullable();
-            $table->longText('DetalleReparacion')->nullable();
+            $table->longText('detalleReparacion')->nullable();
             $table->integer('hReparacion')->nullable();
         });
     }

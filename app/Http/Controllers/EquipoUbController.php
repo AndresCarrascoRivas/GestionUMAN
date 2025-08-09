@@ -27,9 +27,9 @@ class EquipoUbController extends Controller
         return redirect('/equiposUb');
     }
 
-    public function show(string $id)
+    public function show(EquipoUb $equipoUb)
     {
-        //
+        return view('equiposUb.show', compact('equipoUb'));
     }
 
     public function edit(string $id)
@@ -41,5 +41,4 @@ class EquipoUbController extends Controller
     {
         //
     }
-
 }
