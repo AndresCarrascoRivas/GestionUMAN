@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <h1 class=>Aqui se mostraran las ordenes</h1>
+    <h1>Aqui se mostraran las ordenes</h1>
   
     <a href="/">HOME</a>
     <br>

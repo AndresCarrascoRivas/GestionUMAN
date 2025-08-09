@@ -10,9 +10,23 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'fechaReparacion'
+    protected $fillable = [
+    'serialUb',
+    'estado',
+    'tecnico',
+    'faena',
+    'falla',
+    'descripcionFalla',
+    'fechaIngreso',
+    'detalleReparacion',
+    'fechaReparacion',
+    'hReparacion',
+    'serialPcbUman',
+    'serialUps',
+    'versionRpi',
+    'versionFirmware',
     ];
+
 
     /* protected $table = 'orders'; */
 
@@ -25,4 +39,10 @@ class Order extends Model
         );
             
     }
+
+    public function equipoUb()
+{
+    return $this->belongsTo(EquipoUb::class, 'serialUb', 'serialUb');
+}
+
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class StoreOrderRequest extends FormRequest
 {
@@ -22,7 +24,9 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'serialUb'=> 'required',
+            'serialUb' => ['required', 'string', 'min:5', 'exists:equipo_ubs,serialUb'],
+            'estado' => ['required', Rule::in(['pendiente', 'en_proceso', 'completado'])],
+            'falla' => ['required', 'string', 'min:1'],
             'tecnico'=> 'required',
             'faena'=> 'required',
             'fechaIngreso'=> 'required',
