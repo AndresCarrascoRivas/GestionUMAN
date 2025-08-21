@@ -2,7 +2,7 @@
     <div class="max-w-4xl mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[70vh]">
 
         <h1 class="text-4xl font-extrabold mb-10 text-center text-gray-800">
-            👋 Bienvenido al sistema de gestión
+             Sistema de Gestion UMAN
         </h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-md text-center">
@@ -13,11 +13,25 @@
                 <div class="text-lg">Ver Órdenes</div>
             </a>
 
-            {{-- Equipos UB --}}
-            <a href="{{ route('equiposUb.index') }}"
+            {{-- Equipos UMAN --}}
+            <a href="{{ route('equiposUman.index') }}"
                 class="flex flex-col items-center justify-center bg-green-600 hover:bg-green-700 text-blue font-semibold py-6 px-6 rounded-lg shadow-md transition transform hover:scale-105">
                 <div class="text-5xl mb-2">🛠️</div>
-                <div class="text-lg">Ver Equipos UB</div>
+                <div class="text-lg">Ver Equipos UMAN</div>
+            </a>
+
+            {{-- Tecnicos --}}
+            <a href="{{ route('tecnicos.index') }}"
+                class="flex flex-col items-center justify-center bg-green-600 hover:bg-green-700 text-blue font-semibold py-6 px-6 rounded-lg shadow-md transition transform hover:scale-105">
+                <div class="text-5xl mb-2">🛠️</div>
+                <div class="text-lg">Ver tecnicos</div>
+            </a>
+
+            {{-- Faenas --}}
+            <a href="{{ route('faenas.index') }}"
+                class="flex flex-col items-center justify-center bg-green-600 hover:bg-green-700 text-blue font-semibold py-6 px-6 rounded-lg shadow-md transition transform hover:scale-105">
+                <div class="text-5xl mb-2">🛠️</div>
+                <div class="text-lg">Ver Faenas</div>
             </a>
         </div>
 

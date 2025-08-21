@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdenController;
-use App\Http\Controllers\EquipoUbController;
+use App\Http\Controllers\EquipoUmanController;
+use App\Http\Controllers\FaenaController;
+use App\Http\Controllers\TecnicoController;
+
 use App\Models\Order;
 
 Route::get('/', HomeController::class);
@@ -12,6 +15,8 @@ Route::resource('ordenes', OrdenController::class)->parameters([
     'ordenes' => 'order'
 ]);
 
-Route::resource('equiposUb', EquipoUbController::class)->parameters([
-    'equiposUb' => 'equipoUb'
-]);
+Route::resource('equiposUman', EquipoUmanController::class)->except(['destroy']);
+
+Route::resource('tecnicos', TecnicoController::class);
+
+Route::resource('faenas', FaenaController::class);
