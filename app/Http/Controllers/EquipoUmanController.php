@@ -8,7 +8,7 @@ use App\Http\Requests\StoreEquipoUmanRequest;
 
 class EquipoUmanController extends Controller
 {
-        public function index()
+    public function index()
     {
         $equipos = EquipoUman::with('tecnico')->paginate(10);
         return view('equiposUman.index', compact('equipos'));
@@ -28,9 +28,9 @@ class EquipoUmanController extends Controller
                          ->with('success', 'Equipo UMAN creado correctamente.');
     }
 
-    public function show(EquipoUman $equipoUman)
+    public function show(EquipoUman $equiposUman)
     {
-        return view('equiposUman.show', compact('equipoUman'));
+        return view('equiposUman.show', compact('equiposUman'));
     }
 
     public function edit(EquipoUman $equipoUman)
@@ -47,3 +47,4 @@ class EquipoUmanController extends Controller
                          ->with('success', 'Equipo UMAN actualizado correctamente.');
     }
 }
+

@@ -7,7 +7,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-md text-center">
             {{-- Órdenes --}}
-            <a href="{{ route('ordenes.index') }}"
+            <a href="{{ route('ordenlaboratorio.index') }}"
                 class="flex flex-col items-center justify-center bg-blue-600 hover:bg-blue-700 text-blue font-semibold py-6 px-6 rounded-lg shadow-md transition transform hover:scale-105">
                 <div class="text-5xl mb-2">📋</div>
                 <div class="text-lg">Ver Órdenes</div>
