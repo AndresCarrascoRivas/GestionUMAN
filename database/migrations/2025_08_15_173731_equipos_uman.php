@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('pcb_uman')->nullable();
             $table->string('pcb_antenna')->nullable();
             $table->string('radiometrix')->nullable();
-            $table->string('timeserial')->nullable();
             $table->date('fecha_fabricacion')->nullable();
             $table->timestamps();
         });

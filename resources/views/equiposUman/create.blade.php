@@ -114,17 +114,6 @@
                 @enderror
             </div>
 
-            <!-- TimeSerial -->
-            <div class="col-md-4">
-                <label for="timeserial" class="form-label">TimeSerial</label>
-                <input type="text" name="timeserial" id="timeserial"
-                    class="form-control form-control-sm @error('timeserial') is-invalid @enderror"
-                    value="{{ old('timeserial') }}">
-                @error('timeserial')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
             <!-- Fecha de Fabricación -->
             <div class="col-md-4">
                 <label for="fecha_fabricacion" class="form-label">Fecha de Fabricación</label>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrdenLaboratorio extends Model
 {
+    protected $primaryKey = 'id';
     protected $table = 'orden_laboratorio';
 
     protected $fillable = [

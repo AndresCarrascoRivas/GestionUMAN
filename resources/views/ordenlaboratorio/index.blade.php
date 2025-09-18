@@ -36,7 +36,7 @@
                 @forelse($ordenLaboratorio as $orden)
                     <tr>
                         <td>
-                            <a href="{{ route('ordenlaboratorio.show', $orden) }}">
+                            <a href="{{ route('ordenlaboratorio.show', $orden->id) }}">
                              {{ $orden->id }}
                             </a>
                         </td>
