@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrdenLaboratorioRequest;
+use App\Http\Requests\UpdateOrdenLaboratorioRequest;
 use App\Models\OrdenLaboratorio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -46,5 +47,15 @@ class OrdenLaboratorioController extends Controller
         $faenas = Faena::select('id', 'name')->get();
 
         return view('ordenlaboratorio.edit', compact('ordenlaboratorio', 'equipos', 'tecnicos', 'faenas'));
+    }
+
+    public function update(UpdateOrdenLaboratorioRequest $request, OrdenLaboratorio $ordenlaboratorio)
+    {
+        $ordenlaboratorio->fill($request->validated());
+        $ordenlaboratorio->save();
+
+        return redirect()->route('ordenlaboratorio.index')
+                     ->with('success', 'Orden actualizada correctamente.');
+
     }
 }

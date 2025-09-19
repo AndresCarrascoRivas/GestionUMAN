@@ -42,7 +42,8 @@ class TecnicoController extends Controller
 
     public function edit(Tecnico $tecnico)
     {
-        return view('tecnicos.edit', compact('tecnico'));
+        $faenas = Faena::all();
+        return view('tecnicos.edit', compact('tecnico', 'faenas'));
     }
 
     public function update(Request $request, Tecnico $tecnico)
