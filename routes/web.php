@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipoMineroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdenController;
@@ -23,3 +24,5 @@ Route::resource('equiposUman', EquipoUmanController::class)->except(['destroy'])
 Route::resource('tecnicos', TecnicoController::class);
 
 Route::resource('faenas', FaenaController::class);
+
+Route::resource('equiposmineros', EquipoMineroController::class);

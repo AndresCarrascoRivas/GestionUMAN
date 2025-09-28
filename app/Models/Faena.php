@@ -20,4 +20,9 @@ class Faena extends Model
         return $this->hasMany(OrdenLaboratorio::class);
     }
 
+    public function equiposMineros()
+    {
+        return $this->hasMany(EquipoMinero::class);
+    }
+
 }
