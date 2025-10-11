@@ -6,9 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\EquipoUmanController;
 use App\Http\Controllers\FaenaController;
+use App\Http\Controllers\OrdenFaenaController;
 use App\Http\Controllers\OrdenLaboratorioController;
 use App\Http\Controllers\TecnicoController;
-
 use App\Models\Order;
 
 Route::get('/', HomeController::class);
@@ -18,6 +18,8 @@ Route::resource('ordenes', OrdenController::class)->parameters([
 ]);
 
 Route::resource('ordenlaboratorio', OrdenLaboratorioController::class);
+
+Route::resource('ordenfaena', OrdenFaenaController::class);
 
 Route::resource('equiposUman', EquipoUmanController::class)->except(['destroy']);
 
