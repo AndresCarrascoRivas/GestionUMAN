@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('uman_serial');
             $table->foreignId('tecnico_id')->constrained('tecnicos');
             $table->foreignId('faena_id')->constrained('faenas');
+            $table->string('equipo_minero');
             $table->string('estado');
             $table->string('pcb_uman_serial')->nullable();
             $table->string('ups_serial')->nullable();

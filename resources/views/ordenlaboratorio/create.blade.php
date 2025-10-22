@@ -56,6 +56,23 @@
                 @enderror
             </div>
 
+            {{-- Equipo Minero --}}
+            <div class="col-md-4">
+                <label for="equipo_minero" class="form-label">Equipo Minero</label>
+                <select name="equipo_minero" id="equipo_minero"
+                    class="form-select select2 @error('equipo_minero') is-invalid @enderror" required>
+                    <option value="">-- Selecciona un Equipo Minero --</option>
+                    @foreach($equiposminero as $equipominero)
+                        <option value="{{ $equipominero->id }}" {{ old('equipo_minero') == $equipominero->id ? 'selected' : '' }}>
+                            {{ $equipominero->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('equipo_minero')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
             {{-- Estado --}}
             <div>
                 <label for="estado" class="block font-semibold">Estado:</label>

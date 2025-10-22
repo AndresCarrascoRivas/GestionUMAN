@@ -12,6 +12,7 @@ class OrdenLaboratorio extends Model
     protected $fillable = [
         'tecnico_id',
         'faena_id',
+        'equipo_minero',
         'uman_serial',
         'estado',
         'pcb_uman_serial',
@@ -39,6 +40,11 @@ class OrdenLaboratorio extends Model
     public function equipo()
     {
     return $this->belongsTo(EquipoUman::class, 'uman_serial', 'serial');
+    }
+
+    public function equipoMinero()
+    {
+        return $this->belongsTo(EquipoMinero::class, 'equipo_minero');
     }
 
 }

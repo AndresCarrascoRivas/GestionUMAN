@@ -18,6 +18,9 @@
                 <dt class="col-sm-4">Faena</dt>
                 <dd class="col-sm-8">{{ $ordenlaboratorio->faena->name ?? '—' }}</dd>
 
+                <dt class="col-sm-4">Equipo Minero</dt>
+                <dd class="col-sm-8">{{ $ordenlaboratorio->equipominero->name ?? '—' }}</dd>
+
                 <dt class="col-sm-4">Estado</dt>
                 <dd class="col-sm-8">{{ ucfirst($ordenlaboratorio->estado) }}</dd>
 

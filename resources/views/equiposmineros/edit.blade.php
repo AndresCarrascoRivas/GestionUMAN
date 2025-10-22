@@ -35,6 +35,28 @@
                 @enderror
             </div>
 
+                        <!-- Largo antena RF -->
+            <div class="col-md-6">
+                <label for="antena_rf" class="form-label">Antena RF</label>
+                <input type="number" name="antena_rf" id="antena_rf"
+                    class="form-control form-control-sm @error('antena_rf') is-invalid @enderror"
+                    value="{{ old('antena_rf') }}">
+                @error('antena_rf')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Largo antena GPS -->
+            <div class="col-md-6">
+                <label for="antena_gps" class="form-label">Antena GPS</label>
+                <input type="number" name="antena_gps" id="antena_gps"
+                    class="form-control form-control-sm @error('antena_gps') is-invalid @enderror"
+                    value="{{ old('antena_gps') }}">
+                @error('antena_gps')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
             <!-- Botón -->
             <div class="col-12 mt-3">
                 <button type="submit" class="btn btn-success btn-sm">

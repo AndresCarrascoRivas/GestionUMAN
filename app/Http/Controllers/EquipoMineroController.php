@@ -25,11 +25,15 @@ class EquipoMineroController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'faena_id' => 'required|exists:faenas,id',
+            'antena_rf' => 'required|numeric|min:0',
+            'antena_gps' => 'required|numeric|min:0',
         ]);
 
         EquipoMinero::create([
             'name' => $request->name,
             'faena_id' => $request->faena_id,
+            'antena_rf' => $request->antena_rf,
+            'antena_gps' => $request->antena_gps,
         ]);
 
         return redirect()->route('equiposmineros.index')->with('success', 'Equipo minero creado exitosamente.');
@@ -46,9 +50,11 @@ class EquipoMineroController extends Controller
         $request->validate([
             'name' => 'required|string|max:100',
             'faena_id' => 'nullable|exists:faenas,id',
+            'antena_rf' => 'required|numeric|min:0',
+            'antena_gps' => 'required|numeric|min:0',
         ]);
 
-        $equiposminero->update($request->only('name', 'faena_id'));
+        $equiposminero->update($request->only('name', 'faena_id', 'antena_rf', 'antena_gps'));
 
         return redirect()->route('equiposmineros.index')->with('success', 'Equipo Minero actualizado correctamente.');
     }

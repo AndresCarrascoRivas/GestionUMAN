@@ -6,16 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class EquipoMinero extends Model
 {
-    protected $primaryKey = 'id';
     protected $table = 'equipo_minero';
 
     protected $fillable = [
         'name',
         'faena_id',
+        'antena_rf',
+        'antena_gps',
     ];
 
     public function faena()
     {
         return $this->belongsTo(Faena::class);
+    }
+
+    public function ordenFaena()
+    {
+        return $this->hasMany(OrdenFaena::class);
+    }
+
+    public function ordenLaboratorio()
+    {
+        return $this->hasMany(OrdenLaboratorio::class);
     }
 }

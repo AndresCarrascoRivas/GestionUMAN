@@ -42,4 +42,9 @@ class OrdenFaena extends Model
         return $this->belongsTo(EquipoUman::class, 'serial_nueva_uman', 'serial');
     }
 
+    public function equipoMinero()
+    {
+        return $this->belongsTo(EquipoMinero::class, 'equipo_minero', 'name');
+    }
+
 }

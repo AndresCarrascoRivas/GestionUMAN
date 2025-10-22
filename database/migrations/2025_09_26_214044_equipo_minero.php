@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('faena_id')->nullable();
+            $table->integer('antena_rf')->nullable();
+            $table->integer('antena_gps')->nullable();
             $table->foreign('faena_id')->references('id')->on('faenas')->onDelete('set null');
             $table->timestamps();
         });

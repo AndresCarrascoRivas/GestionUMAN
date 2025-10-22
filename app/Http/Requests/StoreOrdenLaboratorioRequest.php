@@ -26,6 +26,7 @@ class StoreOrdenLaboratorioRequest extends FormRequest
             'uman_serial' => ['required', 'string', 'min:5', 'exists:equipos_uman,serial'],
             'tecnico_id'=> 'required',
             'faena_id'=> 'required',
+            'equipo_minero'=> 'required',
             'estado' => ['required', Rule::in(['pendiente', 'en_proceso', 'completado'])],
             'falla' => ['required', 'string', 'min:1'],
             'fecha_ingreso'=> 'required',
