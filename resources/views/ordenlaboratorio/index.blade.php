@@ -1,7 +1,5 @@
 <x-app-layout>
 
-    <a href="/">HOME</a>
-
     @section('title', 'Listado de Ordenes de Laboratorio')
 
     @section('content')
