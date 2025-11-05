@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\EquipoUman;
 use App\Models\Tecnico;
 use App\Models\Faena;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrdenLaboratorioController extends Controller
 {
@@ -60,5 +61,13 @@ class OrdenLaboratorioController extends Controller
         return redirect()->route('ordenlaboratorio.index')
                      ->with('success', 'Orden actualizada correctamente.');
 
+    }
+
+    public function descargarPDF($id)
+    {
+        $ordenlaboratorio = OrdenLaboratorio::with(['tecnico', 'faena', 'equipominero'])->findOrFail($id);
+
+        $pdf = Pdf::loadView('ordenlaboratorio.pdf', compact('ordenlaboratorio'));
+        return $pdf->download("orden_{$ordenlaboratorio->id}.pdf");
     }
 }

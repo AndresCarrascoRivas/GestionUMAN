@@ -18,6 +18,7 @@ Route::resource('ordenes', OrdenController::class)->parameters([
 ]);
 
 Route::resource('ordenlaboratorio', OrdenLaboratorioController::class);
+Route::get('ordenlaboratorio/{id}/pdf', [OrdenLaboratorioController::class, 'descargarPDF'])->name('ordenlaboratorio.pdf');
 
 Route::resource('ordenfaena', OrdenFaenaController::class);
 

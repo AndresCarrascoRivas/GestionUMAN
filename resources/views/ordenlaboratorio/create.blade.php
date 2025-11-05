@@ -9,8 +9,8 @@
             <div>
                 <label for="uman_serial" class="block font-semibold">Serial UMAN</label>
                 <select name="uman_serial" id="uman_serial"
-                    class="w-full px-2 py-1 border rounded select2 @error('uman_serial') is-invalid @enderror">
-                    <option value="">Serial UMAN</option>
+                    class="w-1/12 px-2 py-1 border rounded select2 @error('uman_serial') is-invalid @enderror">
+                    <option value="">Buscar Serial UMAN...</option>
                     @foreach($equipos as $equipo)
                         <option value="{{ $equipo->serial }}" {{ old('uman_serial') == $equipo->serial ? 'selected' : '' }}>
                             {{ $equipo->serial }}

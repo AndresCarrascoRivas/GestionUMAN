@@ -32,8 +32,19 @@
     <!-- Scripts -->
     <!-- jQuery (requerido por Select2) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Select2 JS -->
+    <!-- Select2 JS y CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#uman_serial').select2({
+                placeholder: "Buscar Serial UMAN...",
+                allowClear: true,
+                width: 'resolve'
+            });
+        });
+    </script>
     <!-- Alpine.js -->
     <script src="https://unpkg.com/alpinejs" defer></script>
 

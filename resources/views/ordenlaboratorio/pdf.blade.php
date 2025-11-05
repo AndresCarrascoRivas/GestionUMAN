@@ -1,15 +1,18 @@
-<x-app-layout>
-
-@section('title', 'Detalle de Orden de Laboratorio')
-
-@section('content')
-<div class="container mt-4">
-    <h2 class="mb-4">🔍 Detalle de Orden #{{ $ordenlaboratorio->id }}</h2>
-
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <dl class="row">
-                <dt class="col-sm-4">UMAN Serial</dt>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Orden #{{ $ordenlaboratorio->id }}</title>
+    <style>
+        body { font-family: sans-serif; font-size: 12px; }
+        dt { font-weight: bold; }
+        dd { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>🔍 Detalle de Orden #{{ $ordenlaboratorio->id }}</h2>
+    <dl>
+        <dt class="col-sm-4">UMAN Serial</dt>
                 <dd class="col-sm-8">{{ $ordenlaboratorio->uman_serial }}</dd>
 
                 <dt class="col-sm-4">Técnico</dt>
@@ -60,20 +63,6 @@
                 <dt class="col-sm-4">Última actualización</dt>
                 <dd class="col-sm-8">{{ $ordenlaboratorio->updated_at }}</dd>
             </dl>
-
-            <div class="col-12 mt-3">
-                <a href="{{ route('ordenlaboratorio.index') }}" class="btn btn-secondary">
-                    ← Volver al listado
-                </a>
-                <a href="{{ route('ordenlaboratorio.edit', $ordenlaboratorio->id) }}" class="btn btn-primary btn-sm">
-                    ✏️ Editar Orden
-                </a>
-                <a href="{{ route('ordenlaboratorio.pdf', $ordenlaboratorio->id) }}" class="btn btn-outline-danger btn-sm">
-                    🧾 Descargar PDF
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-</x-app-layout>
+    </dl>
+</body>
+</html>
