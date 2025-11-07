@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2 class="mb-4">🔍 Detalle de Orden #{{ $ordenlaboratorio->id }}</h2>
+    <h2 class="mb-4">🔍 Detalle de Orden de Laboratorio #{{ $ordenlaboratorio->id }}</h2>
 
     <div class="card shadow-sm">
         <div class="card-body">

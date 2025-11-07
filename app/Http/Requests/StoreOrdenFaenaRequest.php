@@ -26,7 +26,7 @@ class StoreOrdenFaenaRequest extends FormRequest
             'tecnico_id'=> 'required',
             'faena_id'=> 'required',
             'fecha_trabajo'=> 'required',
-            'equipo_minero'=> 'required',
+            'equipo_minero_id'=> 'required',
             'estado' => ['required', Rule::in(['pendiente', 'en_proceso', 'completado'])],
             'uman_serial' => ['required', 'string', 'min:5', 'exists:equipos_uman,serial'],
             'cambio_uman' => ['required', 'boolean'],

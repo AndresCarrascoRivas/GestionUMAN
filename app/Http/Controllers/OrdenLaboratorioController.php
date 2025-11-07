@@ -68,6 +68,6 @@ class OrdenLaboratorioController extends Controller
         $ordenlaboratorio = OrdenLaboratorio::with(['tecnico', 'faena', 'equipominero'])->findOrFail($id);
 
         $pdf = Pdf::loadView('ordenlaboratorio.pdf', compact('ordenlaboratorio'));
-        return $pdf->download("orden_{$ordenlaboratorio->id}.pdf");
+        return $pdf->download("orden_Laboratorio_{$ordenlaboratorio->id}.pdf");
     }
 }

@@ -21,6 +21,7 @@ Route::resource('ordenlaboratorio', OrdenLaboratorioController::class);
 Route::get('ordenlaboratorio/{id}/pdf', [OrdenLaboratorioController::class, 'descargarPDF'])->name('ordenlaboratorio.pdf');
 
 Route::resource('ordenfaena', OrdenFaenaController::class);
+Route::get('ordenfaena/{id}/pdf', [OrdenFaenaController::class, 'descargarPDF'])->name('ordenfaena.pdf');
 
 Route::resource('equiposUman', EquipoUmanController::class)->except(['destroy']);
 

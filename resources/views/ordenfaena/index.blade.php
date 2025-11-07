@@ -38,7 +38,7 @@
                              {{ $orden->id }}
                             </a>
                         </td>
-                        <td>{{ $orden->equipo_minero }}</td>
+                        <td>{{ $orden->equipoMinero->name ?? '—' }}</td>
                         <td>{{ ucfirst($orden->faena?->name ?? '—') }}</td>
                         <td>{{ ucfirst($orden->estado) }}</td>
                         <td>{{ ucfirst($orden->falla) }}</td>

@@ -12,7 +12,7 @@ class OrdenFaena extends Model
         'tecnico_id',
         'faena_id',
         'fecha_trabajo',
-        'equipo_minero',
+        'equipo_minero_id',
         'estado',
         'uman_serial',
         'cambio_uman',
@@ -43,8 +43,8 @@ class OrdenFaena extends Model
     }
 
     public function equipoMinero()
-    {
-        return $this->belongsTo(EquipoMinero::class, 'equipo_minero', 'name');
-    }
+{
+    return $this->belongsTo(EquipoMinero::class, 'equipo_minero_id');
+}
 
 }

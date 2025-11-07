@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <h2>🔍 Detalle de Orden #{{ $ordenlaboratorio->id }}</h2>
+    <h2> Detalle de Orden #{{ $ordenlaboratorio->id }}</h2>
     <dl>
         <dt class="col-sm-4">UMAN Serial</dt>
                 <dd class="col-sm-8">{{ $ordenlaboratorio->uman_serial }}</dd>

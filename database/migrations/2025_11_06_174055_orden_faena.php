@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('tecnico_id')->constrained('tecnicos');
             $table->foreignId('faena_id')->constrained('faenas');
             $table->date('fecha_trabajo');
-            $table->string('equipo_minero');
+            $table->foreignId('equipo_minero_id')->constrained('equipo_minero');
             $table->string('estado');
             $table->string('uman_serial');
             $table->boolean('cambio_uman')->default(false);

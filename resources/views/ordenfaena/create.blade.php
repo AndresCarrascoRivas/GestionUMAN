@@ -52,17 +52,17 @@
 
             {{-- Equipo Minero --}}
             <div class="col-md-4">
-                <label for="equipo_minero" class="form-label">Equipo Minero</label>
-                <select name="equipo_minero" id="equipo_minero"
-                    class="form-select select2 @error('equipo_minero') is-invalid @enderror" required>
+                <label for="equipo_minero_id" class="form-label">Equipo Minero</label>
+                <select name="equipo_minero_id" id="equipo_minero_id"
+                    class="form-select select2 @error('equipo_minero_id') is-invalid @enderror" required>
                     <option value="">-- Selecciona un Equipo Minero --</option>
-                    @foreach($equiposminero as $equipominero)
-                        <option value="{{ $equipominero->id }}" {{ old('equipo_minero') == $equipominero->id ? 'selected' : '' }}>
-                            {{ $equipominero->name }}
+                    @foreach($equiposMinero as $equipoMinero)
+                        <option value="{{ $equipoMinero->id }}" {{ old('equipo_minero_id') == $equipoMinero->id ? 'selected' : '' }}>
+                            {{ $equipoMinero->name }}
                         </option>
                     @endforeach
                 </select>
-                @error('equipo_minero')
+                @error('equipo_minero_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

@@ -50,9 +50,10 @@ class TecnicoController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:100',
+            'faena_id' => 'required|exists:faenas,id',
         ]);
 
-        $tecnico->update($request->only('name'));
+        $tecnico->update($request->only('name', 'faena_id'));
 
         return redirect()->route('tecnicos.index')->with('success', 'Técnico actualizado correctamente.');
     }
