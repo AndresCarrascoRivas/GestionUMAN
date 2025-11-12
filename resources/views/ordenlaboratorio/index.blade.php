@@ -57,4 +57,8 @@
         </div>
     </div>
 
+    <a href="{{ route('ordenes.exportar') }}" class="btn btn-success">
+        Descargar Excel
+    </a>
+
 </x-app-layout>

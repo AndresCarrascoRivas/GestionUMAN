@@ -12,6 +12,8 @@ use App\Models\EquipoUman;
 use App\Models\Tecnico;
 use App\Models\Faena;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\OrdenesLaboratorioExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrdenLaboratorioController extends Controller
 {
@@ -69,5 +71,10 @@ class OrdenLaboratorioController extends Controller
 
         $pdf = Pdf::loadView('ordenlaboratorio.pdf', compact('ordenlaboratorio'));
         return $pdf->download("orden_Laboratorio_{$ordenlaboratorio->id}.pdf");
+    }
+
+    public function exportarExcel()
+    {
+        return Excel::download(new OrdenesLaboratorioExport, 'ordenes_laboratorio.xlsx');
     }
 }
