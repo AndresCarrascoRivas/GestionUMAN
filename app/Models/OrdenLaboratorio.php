@@ -37,7 +37,7 @@ class OrdenLaboratorio extends Model
         return $this->belongsTo(Tecnico::class);
     }
 
-    public function equipo()
+    public function equipoUMAN()
     {
     return $this->belongsTo(EquipoUman::class, 'uman_serial', 'serial');
     }

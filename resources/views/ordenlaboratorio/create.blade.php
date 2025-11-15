@@ -62,9 +62,9 @@
                 <select name="equipo_minero" id="equipo_minero"
                     class="form-select select2 @error('equipo_minero') is-invalid @enderror" required>
                     <option value="">-- Selecciona un Equipo Minero --</option>
-                    @foreach($equiposminero as $equipominero)
-                        <option value="{{ $equipominero->id }}" {{ old('equipo_minero') == $equipominero->id ? 'selected' : '' }}>
-                            {{ $equipominero->name }}
+                    @foreach($equiposMinero as $equipoMinero)
+                        <option value="{{ $equipoMinero->id }}" {{ old('equipo_minero') == $equipoMinero->id ? 'selected' : '' }}>
+                            {{ $equipoMinero->name }}
                         </option>
                     @endforeach
                 </select>

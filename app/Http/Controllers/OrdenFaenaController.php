@@ -11,6 +11,8 @@ use App\Models\OrdenFaena;
 use App\Models\Tecnico;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\OrdenesFaenaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrdenFaenaController extends Controller
 {
@@ -68,6 +70,11 @@ class OrdenFaenaController extends Controller
 
         $pdf = Pdf::loadView('ordenfaena.pdf', compact('ordenfaena'));
         return $pdf->download("orden_Faena_{$ordenfaena->id}.pdf");
+    }
+
+    public function exportarExcel()
+    {
+        return Excel::download(new OrdenesFaenaExport, 'ordenes_faena.xlsx');
     }
 
 }

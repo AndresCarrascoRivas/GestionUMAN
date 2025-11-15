@@ -10,24 +10,26 @@ class OrdenesLaboratorioExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return OrdenLaboratorio::all([
-            'tecnico_id',
-            'faena_id',
-            'equipo_minero',
-            'uman_serial',
-            'estado',
-            'pcb_uman_serial',
-            'ups_serial',
-            'rpi_version',
-            'firmware_version',
-            'falla',
-            'descripcion_falla',
-            'detalle_reparacion',
-            'fecha_ingreso',
-            'fecha_reparacion',
-            'horas_reparacion'
-            // Campos a exportar
-        ]);
+        return OrdenLaboratorio::with(['tecnico', 'faena', 'equipoMinero'])
+        ->get()->map(function ($orden) {
+            return [
+                $orden->tecnico->name ?? '—',
+                $orden->faena->name ?? '—',
+                $orden->equipoMinero->name ?? '—',
+                $orden->uman_serial,
+                $orden->estado,
+                $orden->pcb_uman_serial,
+                $orden->ups_serial,
+                $orden->rpi_version,
+                $orden->firmware_version,
+                $orden->falla,
+                $orden->descripcion_falla,
+                $orden->detalle_reparacion,
+                $orden->fecha_ingreso,
+                $orden->fecha_reparacion,
+                $orden->horas_reparacion,
+            ];
+        });
     }
 
     public function headings(): array

@@ -28,8 +28,8 @@ class OrdenLaboratorioController extends Controller
         $equipos = EquipoUman::select('serial')->get();
         $tecnicos = Tecnico::select('id', 'name')->get();
         $faenas = Faena::select('id', 'name')->get();
-        $equiposminero= EquipoMinero::select('id', 'name')->get();
-        return view ('ordenlaboratorio.create', compact('equipos', 'tecnicos', 'faenas', 'equiposminero'));
+        $equiposMinero= EquipoMinero::select('id', 'name')->get();
+        return view ('ordenlaboratorio.create', compact('equipos', 'tecnicos', 'faenas', 'equiposMinero'));
     }
 
     public function store(StoreOrdenLaboratorioRequest $request)
@@ -41,7 +41,7 @@ class OrdenLaboratorioController extends Controller
 
     public function show(OrdenLaboratorio $ordenlaboratorio)
     {
-        $ordenlaboratorio->load(['tecnico', 'faena']);
+        $ordenlaboratorio->load(['tecnico', 'faena', 'equipominero']);
         return view('ordenlaboratorio.show', compact('ordenlaboratorio'));
     }
 
@@ -50,9 +50,9 @@ class OrdenLaboratorioController extends Controller
         $equipos = EquipoUman::select('serial')->get();
         $tecnicos = Tecnico::select('id', 'name')->get();
         $faenas = Faena::select('id', 'name')->get();
-        $equiposminero= EquipoMinero::select('id', 'name')->get();
+        $equiposMinero= EquipoMinero::select('id', 'name')->get();
 
-        return view('ordenlaboratorio.edit', compact('ordenlaboratorio', 'equipos', 'tecnicos', 'faenas', 'equiposminero'));
+        return view('ordenlaboratorio.edit', compact('ordenlaboratorio', 'equipos', 'tecnicos', 'faenas', 'equiposMinero'));
     }
 
     public function update(UpdateOrdenLaboratorioRequest $request, OrdenLaboratorio $ordenlaboratorio)

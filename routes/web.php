@@ -15,6 +15,7 @@ Route::resource('ordenlaboratorio', OrdenLaboratorioController::class);
 Route::get('ordenlaboratorio/{id}/pdf', [OrdenLaboratorioController::class, 'descargarPDF'])->name('ordenlaboratorio.pdf');
 Route::get('/ordenes/exportar', [OrdenLaboratorioController::class, 'exportarExcel'])->name('ordenes.exportar');
 
+Route::get('/ordenfaena/exportar', [OrdenFaenaController::class, 'exportarExcel'])->name('ordenfaena.exportar');
 Route::resource('ordenfaena', OrdenFaenaController::class);
 Route::get('ordenfaena/{id}/pdf', [OrdenFaenaController::class, 'descargarPDF'])->name('ordenfaena.pdf');
 
