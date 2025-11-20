@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orden_laboratorio', function (Blueprint $table) {
+        Schema::create('ordenes_laboratorio', function (Blueprint $table) {
             $table->id();
-            $table->string('uman_serial');
+            $table->string('equipo_uman_serial');
+            $table->foreign('equipo_uman_serial')->references('serial')->on('equipos_uman');
             $table->foreignId('tecnico_id')->constrained('tecnicos');
             $table->foreignId('faena_id')->constrained('faenas');
-            $table->string('equipo_minero');
+            $table->foreignId('equipo_minero_id')->nullable()->constrained('equipo_minero');
             $table->string('estado');
             $table->string('pcb_uman_serial')->nullable();
             $table->string('ups_serial')->nullable();
@@ -27,10 +28,8 @@ return new class extends Migration
             $table->text('detalle_reparacion')->nullable();
             $table->date('fecha_ingreso')->nullable();
             $table->date('fecha_reparacion')->nullable();
-            $table->string('horas_reparacion')->nullable();
+            $table->integer('horas_reparacion')->nullable();
             $table->timestamps();
-
-            $table->foreign('uman_serial')->references('serial')->on('equipos_uman');
         });
     }
 

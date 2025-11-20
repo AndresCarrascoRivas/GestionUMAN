@@ -19,17 +19,21 @@ class OrdenLaboratorioController extends Controller
 {
     public function index()
     {
-        $ordenLaboratorio = OrdenLaboratorio::orderBy('id', 'desc')->paginate(10);
-        return view('ordenlaboratorio.index', compact('ordenLaboratorio'));
+        $ordenes = OrdenLaboratorio::with(['tecnico', 'faena', 'equipoMinero', 'equipoUMAN'])
+            ->orderByDesc('id')
+            ->paginate(10);
+
+        return view('ordenlaboratorio.index', compact('ordenes'));
     }
 
     public function create()
     {
-        $equipos = EquipoUman::select('serial')->get();
-        $tecnicos = Tecnico::select('id', 'name')->get();
-        $faenas = Faena::select('id', 'name')->get();
-        $equiposMinero= EquipoMinero::select('id', 'name')->get();
-        return view ('ordenlaboratorio.create', compact('equipos', 'tecnicos', 'faenas', 'equiposMinero'));
+        $equiposUMAN = EquipoUman::pluck('serial', 'serial');
+        $tecnicos = Tecnico::pluck('name', 'id');
+        $faenas = Faena::pluck('name', 'id');
+        $equiposMineros = EquipoMinero::pluck('name', 'id');
+
+        return view('ordenlaboratorio.create', compact('equiposUMAN', 'tecnicos', 'faenas', 'equiposMineros'));
     }
 
     public function store(StoreOrdenLaboratorioRequest $request)
@@ -41,33 +45,32 @@ class OrdenLaboratorioController extends Controller
 
     public function show(OrdenLaboratorio $ordenlaboratorio)
     {
-        $ordenlaboratorio->load(['tecnico', 'faena', 'equipominero']);
+        $ordenlaboratorio->load(['tecnico', 'faena', 'equipoMinero', 'equipoUMAN']);
+
         return view('ordenlaboratorio.show', compact('ordenlaboratorio'));
     }
 
     public function edit(OrdenLaboratorio $ordenlaboratorio)
     {
-        $equipos = EquipoUman::select('serial')->get();
-        $tecnicos = Tecnico::select('id', 'name')->get();
-        $faenas = Faena::select('id', 'name')->get();
-        $equiposMinero= EquipoMinero::select('id', 'name')->get();
+        $equiposUMAN = EquipoUman::pluck('serial', 'serial');
+        $tecnicos = Tecnico::pluck('name', 'id');
+        $faenas = Faena::pluck('name', 'id');
+        $equiposMineros = EquipoMinero::pluck('name', 'id');
 
-        return view('ordenlaboratorio.edit', compact('ordenlaboratorio', 'equipos', 'tecnicos', 'faenas', 'equiposMinero'));
+        return view('ordenlaboratorio.edit', compact('ordenlaboratorio', 'equiposUMAN', 'tecnicos', 'faenas', 'equiposMineros'));
     }
 
     public function update(UpdateOrdenLaboratorioRequest $request, OrdenLaboratorio $ordenlaboratorio)
     {
-        $ordenlaboratorio->fill($request->validated());
-        $ordenlaboratorio->save();
+        $ordenlaboratorio->update($request->validated());
 
         return redirect()->route('ordenlaboratorio.index')
-                     ->with('success', 'Orden actualizada correctamente.');
-
+                         ->with('success', 'Orden actualizada correctamente.');
     }
 
     public function descargarPDF($id)
     {
-        $ordenlaboratorio = OrdenLaboratorio::with(['tecnico', 'faena', 'equipominero'])->findOrFail($id);
+        $ordenlaboratorio = OrdenLaboratorio::with(['tecnico', 'faena', 'equipoMinero'])->findOrFail($id);
 
         $pdf = Pdf::loadView('ordenlaboratorio.pdf', compact('ordenlaboratorio'));
         return $pdf->download("orden_Laboratorio_{$ordenlaboratorio->id}.pdf");

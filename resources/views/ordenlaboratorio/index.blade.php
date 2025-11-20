@@ -1,10 +1,9 @@
 <x-app-layout>
-
-    @section('title', 'Listado de Ordenes de Laboratorio')
+    @section('title', 'Listado de Órdenes de Laboratorio')
 
     @section('content')
     <div class="container mt-4">
-        <h2 class="mb-4">📦 Ordenes de Laboratorio UMAN registradas</h2>
+        <h2 class="mb-4 text-xl font-bold">📦 Órdenes de Laboratorio UMAN registradas</h2>
 
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -13,52 +12,52 @@
             </div>
         @endif
 
-        <div class="mb-3 text-end">
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <a href="{{ route('ordenlaboratorio.create') }}" class="btn btn-primary">
-                ➕ Nuevo Equipo
+                ➕ Nueva Orden
+            </a>
+            <a href="{{ route('ordenes.exportar') }}" class="btn btn-success">
+                📥 Descargar Excel
             </a>
         </div>
 
-        <table class="table table-bordered table-hover align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>ID</th>
-                    <th>Serial UMAN</th>
-                    <th>Faena</th>
-                    <th>Estado</th>
-		    <th>Falla</th>
-		    <th>Fecha Ingreso</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($ordenLaboratorio as $orden)
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
                     <tr>
-                        <td>
-                            <a href="{{ route('ordenlaboratorio.show', $orden->id) }}">
-                             {{ $orden->id }}
-                            </a>
-                        </td>
-                        <td>{{ $orden->uman_serial }}</td>
-                        <td>{{ ucfirst($orden->faena?->name ?? '—') }}</td>
-                        <td>{{ ucfirst($orden->estado) }}</td>
-                        <td>{{ ucfirst($orden->falla) }}</td>
-                        <td>{{ ucfirst($orden->fecha_ingreso) }}</td>
+                        <th>ID</th>
+                        <th>Serial UMAN</th>
+                        <th>Faena</th>
+                        <th>Estado</th>
+                        <th>Falla</th>
+                        <th>Fecha Ingreso</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="text-center text-muted">No hay equipos registrados.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($ordenes as $orden)
+                        <tr>
+                            <td>
+                                <a href="{{ route('ordenlaboratorio.show', $orden->id) }}">
+                                    {{ $orden->id }}
+                                </a>
+                            </td>
+                            <td>{{ $orden->equipoUMAN->serial ?? '—' }}</td>
+                            <td>{{ ucfirst(optional($orden->faena)->name ?? '—') }}</td>
+                            <td>{{ ucfirst($orden->estado) }}</td>
+                            <td>{{ ucfirst($orden->falla ?? '—') }}</td>
+                            <td>{{ $orden->fecha_ingreso ? \Carbon\Carbon::parse($orden->fecha_ingreso)->format('d-m-Y') : '—' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">No hay órdenes registradas.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
 
         <div class="mt-3">
-            {{ $ordenLaboratorio->links() }}
+            {{ $ordenes->links() }}
         </div>
     </div>
-
-    <a href="{{ route('ordenes.exportar') }}" class="btn btn-success">
-        Descargar Excel
-    </a>
-
 </x-app-layout>

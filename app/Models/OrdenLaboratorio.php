@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrdenLaboratorio extends Model
 {
-    protected $primaryKey = 'id';
-    protected $table = 'orden_laboratorio';
+    protected $table = 'ordenes_laboratorio';
 
     protected $fillable = [
         'tecnico_id',
         'faena_id',
-        'equipo_minero',
-        'uman_serial',
+        'equipo_uman_serial',
+        'equipo_minero_id',
         'estado',
         'pcb_uman_serial',
         'ups_serial',
@@ -39,12 +38,12 @@ class OrdenLaboratorio extends Model
 
     public function equipoUMAN()
     {
-    return $this->belongsTo(EquipoUman::class, 'uman_serial', 'serial');
+        return $this->belongsTo(EquipoUman::class, 'equipo_uman_serial', 'serial');
     }
 
     public function equipoMinero()
     {
-        return $this->belongsTo(EquipoMinero::class, 'equipo_minero');
+        return $this->belongsTo(EquipoMinero::class, 'equipo_minero_id');
     }
 
 }

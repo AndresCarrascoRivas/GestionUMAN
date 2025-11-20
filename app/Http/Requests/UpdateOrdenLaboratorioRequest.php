@@ -22,10 +22,10 @@ class UpdateOrdenLaboratorioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uman_serial' => 'required|string|exists:equipos_uman,serial',
+            'equipo_uman_serial' => 'required|string|exists:equipos_uman,serial',
             'tecnico_id' => 'required|exists:tecnicos,id',
             'faena_id' => 'required|exists:faenas,id',
-            'equipo_minero'=> 'required',
+            'equipo_minero_id'=> 'required',
             'estado' => 'required|in:pendiente,en_proceso,completado',
             'pcb_uman_serial' => 'nullable|string|max:255',
             'ups_serial' => 'nullable|string|max:255',

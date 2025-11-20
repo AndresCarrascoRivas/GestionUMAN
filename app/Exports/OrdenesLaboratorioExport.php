@@ -11,31 +11,34 @@ class OrdenesLaboratorioExport implements FromCollection, WithHeadings
     public function collection()
     {
         return OrdenLaboratorio::with(['tecnico', 'faena', 'equipoMinero'])
-        ->get()->map(function ($orden) {
-            return [
-                $orden->tecnico->name ?? '—',
-                $orden->faena->name ?? '—',
-                $orden->equipoMinero->name ?? '—',
-                $orden->uman_serial,
-                $orden->estado,
-                $orden->pcb_uman_serial,
-                $orden->ups_serial,
-                $orden->rpi_version,
-                $orden->firmware_version,
-                $orden->falla,
-                $orden->descripcion_falla,
-                $orden->detalle_reparacion,
-                $orden->fecha_ingreso,
-                $orden->fecha_reparacion,
-                $orden->horas_reparacion,
-            ];
-        });
+            ->get()
+            ->map(function ($orden) {
+                return [
+                    $orden->id,
+                    $orden->tecnico->name ?? '—',
+                    $orden->faena->name ?? '—',
+                    $orden->equipoMinero->name ?? '—',
+                    $orden->equipo_uman_serial,
+                    $orden->estado,
+                    $orden->pcb_uman_serial,
+                    $orden->ups_serial,
+                    $orden->rpi_version,
+                    $orden->firmware_version,
+                    $orden->falla,
+                    $orden->descripcion_falla,
+                    $orden->detalle_reparacion,
+                    $orden->fecha_ingreso,
+                    $orden->fecha_reparacion,
+                    $orden->horas_reparacion,
+                ];
+            });
     }
 
     public function headings(): array
     {
         return [
-            'Tecnico',
+            'Orden Laboratorio',
+            'Técnico',
             'Faena',
             'Equipo Minero',
             'Serial UMAN',
@@ -45,12 +48,11 @@ class OrdenesLaboratorioExport implements FromCollection, WithHeadings
             'Raspberry',
             'Firmware',
             'Falla',
-            'Descripcion Falla',
-            'Detalle Reparacion',
-            'Ingreso',
-            'Reparacion',
-            'Horas',
-            // Encabezados legibles
+            'Descripción Falla',
+            'Detalle Reparación',
+            'Fecha Ingreso',
+            'Fecha Reparación',
+            'Horas Reparación',
         ];
     }
 }

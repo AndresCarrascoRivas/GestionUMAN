@@ -25,8 +25,8 @@ class EquipoMineroController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'faena_id' => 'required|exists:faenas,id',
-            'antena_rf' => 'required|numeric|min:0',
-            'antena_gps' => 'required|numeric|min:0',
+            'antena_rf' => 'nullable|numeric|min:0',
+            'antena_gps' => 'nullable|numeric|min:0',
         ]);
 
         EquipoMinero::create([
@@ -50,8 +50,8 @@ class EquipoMineroController extends Controller
         $request->validate([
             'name' => 'required|string|max:100',
             'faena_id' => 'nullable|exists:faenas,id',
-            'antena_rf' => 'required|numeric|min:0',
-            'antena_gps' => 'required|numeric|min:0',
+            'antena_rf' => 'nullable|numeric|min:0',
+            'antena_gps' => 'nullable|numeric|min:0',
         ]);
 
         $equiposminero->update($request->only('name', 'faena_id', 'antena_rf', 'antena_gps'));

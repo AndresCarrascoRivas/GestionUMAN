@@ -23,10 +23,10 @@ class StoreOrdenLaboratorioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uman_serial' => ['required', 'string', 'min:5', 'exists:equipos_uman,serial'],
+            'equipo_uman_serial' => ['required', 'string', 'min:5', 'exists:equipos_uman,serial'],
             'tecnico_id'=> 'required',
             'faena_id'=> 'required',
-            'equipo_minero'=> 'required',
+            'equipo_minero_id'=> 'nullable',
             'estado' => ['required', Rule::in(['pendiente', 'en_proceso', 'completado'])],
             'falla' => ['required', 'string', 'min:1'],
             'fecha_ingreso'=> 'required',
