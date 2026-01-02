@@ -31,13 +31,22 @@
             <tbody>
                 @forelse($equiposmineros as $equipominero)
                     <tr>
-                        <td>{{ $equipominero->id }}</td>
+                        <!-- Número con link al show -->
+                        <td>
+                            <a href="{{ route('equiposmineros.show', $equipominero->id) }}" 
+                               class="fw-bold text-primary text-decoration-none">
+                                {{ $equipominero->id }}
+                            </a>
+                        </td>
+
                         <td>{{ $equipominero->name }}</td>
                         <td>{{ $equipominero->faena?->name ?? 'Sin asignar' }}</td>
                         <td>
-                            <a href="{{ route('equiposmineros.edit', $equipominero->id) }}" class="btn btn-sm btn-warning">✏️ Editar</a>
+                            <a href="{{ route('equiposmineros.edit', $equipominero->id) }}" class="btn btn-sm btn-warning">
+                                ✏️ Editar
+                            </a>
 
-                            <form action="{{ route('equiposmineros.destroy', $equipominero->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar Este equipo?')">
+                            <form action="{{ route('equiposmineros.destroy', $equipominero->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar este equipo?')">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger">🗑️ Eliminar</button>

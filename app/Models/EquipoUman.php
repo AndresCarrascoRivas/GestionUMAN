@@ -15,13 +15,18 @@ class EquipoUman extends Model
         'serial', 
         'tecnico_id', 
         'estado',
-        'uman_version',
+        'modelo_uman',
+        'uman_version_id',
+        'version_sd_id',
+        'pcb_uman_id',
         'rpi_version',
         'ups_version',
-        'pcb_uman',
         'pcb_antenna',
         'radiometrix',
-        'timeserial',
+        'bam',
+        'marca_bam',
+        'chip',
+        'imei_chip',
         'fecha_fabricacion',
     ]; 
 
@@ -30,15 +35,30 @@ class EquipoUman extends Model
         return $this->belongsTo(Tecnico::class);
     }
 
+    public function versionSd()
+    {
+        return $this->belongsTo(VersionSd::class);
+    }
+
+    public function versionUman()
+    {
+        return $this->belongsTo(VersionUman::class, 'uman_version_id');
+    }
+
+    public function pcbUman()
+    {
+        return $this->belongsTo(PcbUman::class);
+    }
+
     public function ordenesFaena()
     {
         return $this->hasMany(OrdenFaena::class, 'uman_serial', 'serial');
     }
 
     public function ordenesLaboratorio()
-    {
-        return $this->hasMany(OrdenLaboratorio::class, 'uman_serial', 'serial');
-    }
+        {
+            return $this->hasMany(OrdenLaboratorio::class, 'equipo_uman_serial', 'serial');
+        }
 
     public function getRouteKeyName()
     {

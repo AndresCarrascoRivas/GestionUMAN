@@ -25,4 +25,9 @@ class Faena extends Model
         return $this->hasMany(EquipoMinero::class);
     }
 
+    public function checkFaena()
+    {
+        return $this->hasMany(CheckFaena::class);
+    }
+
 }

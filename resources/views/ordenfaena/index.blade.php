@@ -13,9 +13,12 @@
             </div>
         @endif
 
-        <div class="mb-3 text-end">
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <a href="{{ route('ordenfaena.create') }}" class="btn btn-primary">
-                ➕ Nuevo Equipo
+                ➕ Nueva Orden
+            </a>
+            <a href="{{ route('ordenfaena.exportar') }}" class="btn btn-success">
+                Descargar Excel
             </a>
         </div>
 
@@ -56,9 +59,5 @@
             {{ $ordenesFaena->links() }}
         </div>
     </div>
-
-    <a href="{{ route('ordenfaena.exportar') }}" class="btn btn-success">
-        Descargar Excel
-    </a>
 
 </x-app-layout>

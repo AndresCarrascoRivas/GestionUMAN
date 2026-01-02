@@ -13,9 +13,12 @@
             </div>
         @endif
 
-        <div class="mb-3 text-end">
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <a href="{{ route('equiposUman.create') }}" class="btn btn-primary">
                 ➕ Nuevo Equipo
+            </a>
+            <a href="{{ route('equiposUman.export') }}" class="btn btn-success">
+                📥 Descargar Excel
             </a>
         </div>
 
@@ -25,7 +28,9 @@
                     <th>Serial</th>
                     <th>Técnico</th>
                     <th>Estado</th>
-                    <th>Version UMAN</th>
+                    <th>Modelo UMAN</th>
+                    <th>Versión SD</th>
+                    <th>PCB UMAN</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,12 +41,11 @@
                                 {{ $equipo->serial }}
                             </a>
                         </td>
-
-                        <td>
-                            {{ $equipo->tecnico?->name ?? '—' }}
-                        </td>
+                        <td>{{ $equipo->tecnico->name ?? 'Sin técnico' }}</td>
                         <td>{{ ucfirst($equipo->estado) }}</td>
-                        <td>{{ ucfirst($equipo->uman_version) }}</td>
+                        <td>{{ $equipo->modelo_uman ?? '-' }}</td>
+                        <td>{{ $equipo->versionSd->version ?? '-' }}</td>
+                        <td>{{ $equipo->pcbUman->name ?? '-' }}</td>
                     </tr>
                 @empty
                     <tr>

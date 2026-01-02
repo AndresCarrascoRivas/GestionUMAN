@@ -23,4 +23,9 @@ class Tecnico extends Model
         return $this->hasMany(OrdenLaboratorio::class);
     }
 
+    public function checkFaena()
+    {
+        return $this->hasMany(CheckFaena::class);
+    }
+
 }

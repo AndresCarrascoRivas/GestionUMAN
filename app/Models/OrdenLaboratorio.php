@@ -14,10 +14,14 @@ class OrdenLaboratorio extends Model
         'equipo_uman_serial',
         'equipo_minero_id',
         'estado',
-        'pcb_uman_serial',
-        'ups_serial',
+        'pcb_uman_id',
+        'ups_version',
         'rpi_version',
-        'firmware_version',
+        'uman_version_id',
+        'bam',
+        'marca_bam',
+        'chip',
+        'imei_chip',
         'falla',
         'descripcion_falla',
         'detalle_reparacion',
@@ -36,7 +40,7 @@ class OrdenLaboratorio extends Model
         return $this->belongsTo(Tecnico::class);
     }
 
-    public function equipoUMAN()
+    public function equipoUman()
     {
         return $this->belongsTo(EquipoUman::class, 'equipo_uman_serial', 'serial');
     }
@@ -44,6 +48,21 @@ class OrdenLaboratorio extends Model
     public function equipoMinero()
     {
         return $this->belongsTo(EquipoMinero::class, 'equipo_minero_id');
+    }
+
+    public function pcbUman()
+    {
+        return $this->belongsTo(PcbUman::class, 'pcb_uman_id');
+    }
+
+    public function versionUman()
+    {
+        return $this->belongsTo(VersionUman::class, 'uman_version_id');
+    }
+
+    public function versionSd()
+    {
+        return $this->belongsTo(VersionSd::class, 'version_sd_id');
     }
 
 }

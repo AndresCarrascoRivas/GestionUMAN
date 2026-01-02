@@ -19,10 +19,14 @@ return new class extends Migration
             $table->foreignId('faena_id')->constrained('faenas');
             $table->foreignId('equipo_minero_id')->nullable()->constrained('equipo_minero');
             $table->string('estado');
-            $table->string('pcb_uman_serial')->nullable();
-            $table->string('ups_serial')->nullable();
+            $table->foreignId('pcb_uman_id')->constrained('pcb_umans');
+            $table->string('ups_version')->nullable();
             $table->string('rpi_version')->nullable();
-            $table->string('firmware_version')->nullable();
+            $table->foreignId('uman_version_id')->constrained('version_umans');
+            $table->boolean('bam')->default(false);
+            $table->string('marca_bam')->nullable();
+            $table->string('chip')->nullable();
+            $table->string('imei_chip')->nullable();
             $table->string('falla')->nullable();
             $table->text('descripcion_falla')->nullable();
             $table->text('detalle_reparacion')->nullable();
@@ -38,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('ordenes_laboratorio');
     }
 };

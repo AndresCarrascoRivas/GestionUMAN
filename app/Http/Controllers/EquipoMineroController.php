@@ -39,6 +39,11 @@ class EquipoMineroController extends Controller
         return redirect()->route('equiposmineros.index')->with('success', 'Equipo minero creado exitosamente.');
     }
 
+        public function show(EquipoMinero $equiposminero)
+    {
+        return view('equiposmineros.show', compact('equiposminero'));
+    }
+
     public function edit(EquipoMinero $equiposminero)
     {
         $faenas = Faena::all();

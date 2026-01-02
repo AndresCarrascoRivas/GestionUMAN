@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class UpdateOrdenLaboratorioRequest extends FormRequest
 {
@@ -22,21 +24,25 @@ class UpdateOrdenLaboratorioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'equipo_uman_serial' => 'required|string|exists:equipos_uman,serial',
-            'tecnico_id' => 'required|exists:tecnicos,id',
-            'faena_id' => 'required|exists:faenas,id',
-            'equipo_minero_id'=> 'required',
-            'estado' => 'required|in:pendiente,en_proceso,completado',
-            'pcb_uman_serial' => 'nullable|string|max:255',
-            'ups_serial' => 'nullable|string|max:255',
-            'rpi_version' => 'nullable|string|max:255',
-            'firmware_version' => 'nullable|string|max:255',
-            'falla' => 'nullable|string|max:255',
-            'descripcion_falla' => 'nullable|string',
-            'detalle_reparacion' => 'nullable|string',
-            'fecha_ingreso' => 'nullable|date',
-            'fecha_reparacion' => 'nullable|date',
-            'horas_reparacion' => 'nullable|numeric|min:0',
+            'equipo_uman_serial' => ['required', 'string', 'min:5', 'exists:equipos_uman,serial'],
+            'tecnico_id'         => ['required', 'exists:tecnicos,id'],
+            'faena_id'           => ['required', 'exists:faenas,id'],
+            'equipo_minero_id'   => ['nullable', 'exists:equipo_minero,id'],
+            'estado'             => ['required', Rule::in(['pendiente','en_proceso','completado'])],
+            'pcb_uman_id'        => ['required', 'exists:pcb_umans,id'],
+            'uman_version_id'    => ['required', 'exists:version_umans,id'],
+            'rpi_version'        => ['nullable', 'string', 'max:255'],
+            'ups_version'        => ['nullable', 'string', 'max:255'],
+            'bam'                => ['boolean'],
+            'marca_bam'          => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
+            'chip'               => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
+            'imei_chip'          => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
+            'falla'              => ['nullable', 'string', 'max:255'],
+            'descripcion_falla'  => ['nullable', 'string'],
+            'detalle_reparacion' => ['nullable', 'string'],
+            'fecha_ingreso'      => ['required', 'date'],
+            'fecha_reparacion'   => ['nullable', 'date'],
+            'horas_reparacion'   => ['nullable', 'integer', 'min:0'],
         ];
     }
 }
