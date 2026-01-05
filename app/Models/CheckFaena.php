@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CheckFaena extends Model
 {
-       protected $fillable = [
+    protected $fillable = [
         'tecnico_id',
         'faena_id',
         'equipo_minero_id',
@@ -20,7 +20,17 @@ class CheckFaena extends Model
         'observacion',
     ];
 
-        public function tecnico()
+    protected $casts = [
+        'fecha_ingreso' => 'date',
+        'caja_uman' => 'boolean',
+        'hmi' => 'boolean',
+        'antena_rf' => 'boolean',
+        'antena_gps' => 'boolean',
+        'conexion_electrica' => 'boolean',
+        'sensores_internos' => 'boolean',
+    ];
+
+    public function tecnico()
     {
         return $this->belongsTo(Tecnico::class);
     }

@@ -22,7 +22,7 @@ class CheckFaenasController extends Controller
     {
         $tecnicos = Tecnico::select('id', 'name')->orderBy('name')->get();
         $faenas = Faena::select('id', 'name')->orderBy('name')->get();
-        $equiposMinero = EquipoMinero::select('id', 'serial')->get();
+        $equiposMinero = EquipoMinero::select('id', 'name')->get();
 
         return view('checkfaenas.create', compact('tecnicos', 'faenas', 'equiposMinero'));
     }
