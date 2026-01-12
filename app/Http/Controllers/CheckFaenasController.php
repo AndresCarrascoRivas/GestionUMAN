@@ -11,12 +11,26 @@ use Illuminate\Http\Request;
 
 class CheckFaenasController extends Controller
 {
-        public function index()
-    {
-        $checkFaenas = CheckFaena::with(['tecnico', 'faena', 'equipoMinero'])
-                                 ->orderBy('id')->paginate(10);
-        return view('checkfaenas.index', compact('checkFaenas'));
-    }
+        public function index(Request $request)
+        {
+            $query = CheckFaena::with(['tecnico', 'faena', 'equipoMinero'])
+                            ->orderBy('id');
+
+            if ($request->filled('faena_id')) {
+                $query->where('faena_id', $request->faena_id);
+            }
+
+            if ($request->filled('tecnico_id')) {
+                $query->where('tecnico_id', $request->tecnico_id);
+            }
+
+            $checkFaenas = $query->paginate(10);
+
+            $faenas = Faena::orderBy('name')->get();
+            $tecnicos = Tecnico::orderBy('name')->get();
+
+            return view('checkfaenas.index', compact('checkFaenas', 'faenas', 'tecnicos'));
+        }
 
     public function create()
     {

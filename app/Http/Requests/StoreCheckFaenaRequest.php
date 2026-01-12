@@ -36,6 +36,24 @@ class StoreCheckFaenaRequest extends FormRequest
         ];
     }
 
+    protected function prepareForValidation()
+    {
+        $booleanFields = [
+            'caja_uman',
+            'hmi',
+            'antena_rf',
+            'antena_gps',
+            'conexion_electrica',
+            'sensores_internos',
+        ];
+
+        foreach ($booleanFields as $field) {
+            $this->merge([
+                $field => $this->has($field), // true si vino en el request, false si no
+            ]);
+        }
+    }
+
         public function messages(): array
     {
         return [

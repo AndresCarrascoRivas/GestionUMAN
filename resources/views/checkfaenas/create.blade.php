@@ -57,9 +57,12 @@
             <!-- Fecha de trabajo -->
             <div>
                 <label for="fecha_ingreso" class="block font-semibold">Fecha de Ingreso</label>
-                <input type="date" name="fecha_ingreso" id="fecha_ingreso"
+                <input type="date" 
+                    name="fecha_ingreso" 
+                    id="fecha_ingreso"
                     class="w-full px-2 py-1 border rounded @error('fecha_ingreso') is-invalid @enderror"
-                    value="{{ old('fecha_ingreso') }}" required>
+                    value="{{ old('fecha_ingreso') }}"
+                    max="{{ date('Y-m-d') }}">
                 @error('fecha_ingreso')
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
