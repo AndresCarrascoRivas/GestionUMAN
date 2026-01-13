@@ -24,12 +24,17 @@ class CheckFaenasController extends Controller
                 $query->where('tecnico_id', $request->tecnico_id);
             }
 
+            if ($request->filled('equipo_minero_id')){
+                $query->where('equipo_minero_id', $request->equipo_minero_id);
+            }
+
             $checkFaenas = $query->paginate(10);
 
             $faenas = Faena::orderBy('name')->get();
             $tecnicos = Tecnico::orderBy('name')->get();
+            $equiposMinero = EquipoMinero::orderby('name')->get();
 
-            return view('checkfaenas.index', compact('checkFaenas', 'faenas', 'tecnicos'));
+            return view('checkfaenas.index', compact('checkFaenas', 'faenas', 'tecnicos', 'equiposMinero'));
         }
 
     public function create()

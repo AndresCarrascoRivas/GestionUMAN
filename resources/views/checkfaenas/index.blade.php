@@ -13,19 +13,54 @@
         </a>
     </div>
 
-    <div class="mb-4">
-        <form method="GET" action="{{ route('checkfaenas.index') }}" class="flex items-center gap-2">
-            <label for="faena_id" class="font-semibold">Filtrar por Faena:</label>
-            <select name="faena_id" id="faena_id" class="border rounded px-2 py-1">
-                <option value="">-- Todas --</option>
-                @foreach($faenas as $faena)
-                    <option value="{{ $faena->id }}" 
-                        {{ request('faena_id') == $faena->id ? 'selected' : '' }}>
-                        {{ $faena->name }}
-                    </option>
-                @endforeach
-            </select>
-            <button type="submit" class="btn btn-primary">Filtrar</button>
+    <div class="mb-3">
+        <form method="GET" action="{{ route('checkfaenas.index') }}">
+            <div class="row">
+                {{-- Columna 1: Técnico --}}
+                <div class="col-md-3">
+                    <label for="tecnico_id" class="form-label fw-bold">Filtrar Técnico:</label>
+                    <select name="tecnico_id" id="tecnico_id" class="form-select"
+                            onchange="this.form.submit()">
+                        <option value="">-- Todos --</option>
+                        @foreach($tecnicos as $tecnico)
+                            <option value="{{ $tecnico->id }}" 
+                                {{ request('tecnico_id') == $tecnico->id ? 'selected' : '' }}>
+                                {{ $tecnico->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- Columna 2: Faena --}}
+                <div class="col-md-3">
+                    <label for="faena_id" class="form-label fw-bold">Filtrar Faena:</label>
+                    <select name="faena_id" id="faena_id" class="form-select"
+                            onchange="this.form.submit()">
+                        <option value="">-- Todas --</option>
+                        @foreach($faenas as $faena)
+                            <option value="{{ $faena->id }}" 
+                                {{ request('faena_id') == $faena->id ? 'selected' : '' }}>
+                                {{ $faena->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- Columna 3: Equipo Minero--}}
+                <div class="col-md-3">
+                    <label for="equipo_minero_id" class="form-label fw-bold">Filtrar Equipo minero:</label>
+                    <select name="equipo_minero_id" id="equipo_minero_id" class="form-select"
+                            onchange="this.form.submit()">
+                        <option value="">-- Todas --</option>
+                        @foreach($equiposMinero as $equipoMinero)
+                            <option value="{{ $equipoMinero->id }}" 
+                                {{ request('equipoMinero_id') == $equipoMinero->id ? 'selected' : '' }}>
+                                {{ $equipoMinero->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </form>
     </div>
 
@@ -35,20 +70,7 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="border px-4 py-2">ID</th>
-                    <th class="border px-4 py-2">
-                        <form method="GET" action="{{ route('checkfaenas.index') }}">
-                            <label for="faena_id" class="font-semibold">Tecnico:</label>
-                            <select name="tecnico_id" onchange="this.form.submit()" class="border rounded px-2 py-1">
-                                <option value="">Técnico (todos)</option>
-                                @foreach($tecnicos as $tecnico)
-                                    <option value="{{ $tecnico->id }}" 
-                                        {{ request('tecnico_id') == $tecnico->id ? 'selected' : '' }}>
-                                        {{ $tecnico->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </form>
-                    </th>
+                    <th class="border px-4 py-2">Tecnico</th>
                     <th class="border px-4 py-2">Faena</th>
                     <th class="border px-4 py-2">Equipo Minero</th>
                     <th class="border px-4 py-2">Fecha Ingreso</th>
