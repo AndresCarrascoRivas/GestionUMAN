@@ -25,8 +25,9 @@
             {{-- Faena --}}
             <div class="mb-3">
                 <label for="faena_id" class="form-label">Faena</label>
-                <select name="faena_id" id="faena_id" class="form-select select2">
-                    <option value="">Seleccione...</option>
+                <select name="faena_id" id="faena_id" 
+                    class="w-full px-2 py-1 border rounded select2 @error('faena_id') is-invalid @enderror">
+                    <option value="">Seleccione</option>
                     @foreach($faenas as $faena)
                         <option value="{{ $faena->id }}" {{ old('faena_id') == $faena->id ? 'selected' : '' }}>
                             {{ $faena->name }}
@@ -40,9 +41,10 @@
 
             {{-- Equipo Minero --}}
             <div class="mb-3">
-                <label for="equipo_minero_id" class="form-label">Equipo Minero</label>
-                <select name="equipo_minero_id" id="equipo_minero_id" class="form-select select2">
-                    <option value="">Seleccione...</option>
+                <label for="equipo_minero_id" class="block font-semibold">Equipo Minero</label>
+                <select name="equipo_minero_id" id="equipo_minero_id" 
+                    class="w-full px-2 py-1 border rounded select2 @error('equipo_minero_id') is-invalid @enderror">
+                    <option value="">Seleccione</option>
                     @foreach($equiposMinero as $equipo)
                         <option value="{{ $equipo->id }}" {{ old('equipo_minero_id') == $equipo->id ? 'selected' : '' }}>
                             {{ $equipo->name }}
@@ -53,6 +55,45 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+                <!-- Script -->
+            @push('scripts')
+            <script>
+                $(document).ready(function() {
+                    // inicializar select2 si lo usas
+                    $('#faena_id, #equipo_minero_id').select2();
+
+                    // cuando cambie la faena
+                    $('#faena_id').on('change', function() {
+                        let faenaId = $(this).val();
+
+                        if(faenaId) {
+                            $.ajax({
+                                url: '/equipos-mineros/' + faenaId,
+                                type: 'GET',
+                                success: function(data) {
+                                    let $equipoSelect = $('#equipo_minero_id');
+                                    $equipoSelect.empty();
+                                    $equipoSelect.append('<option value=""> Selecciona un equipo minero --</option>');
+
+                                    $.each(data, function(id, name) {
+                                        $equipoSelect.append('<option value="'+id+'">'+name+'</option>');
+                                    });
+
+                                    // refrescar select2
+                                    $equipoSelect.trigger('change');
+                                }
+                            });
+                        } else {
+                            // si no hay faena seleccionada, limpiar equipos
+                            $('#equipo_minero_id').empty()
+                                .append('<option value="">-- Selecciona un equipo minero --</option>')
+                                .trigger('change');
+                        }
+                    });
+                });
+            </script>
+            @endpush
 
             <!-- Fecha de trabajo -->
             <div>

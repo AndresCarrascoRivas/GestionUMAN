@@ -19,6 +19,27 @@
             </a>
         </div>
 
+                <div class="mb-3">
+            <form method="GET" action="{{ route('equiposmineros.index') }}">
+                <div class="row">
+                    {{-- Columna 1: Faena --}}
+                    <div class="col-md-3">
+                        <label for="faena_id" class="form-label fw-bold">Filtrar Faena:</label>
+                        <select name="faena_id" id="faena_id" class="form-select"
+                                onchange="this.form.submit()">
+                            <option value="">-- Todas --</option>
+                            @foreach($faenas as $faena)
+                                <option value="{{ $faena->id }}" 
+                                    {{ request('faena_id') == $faena->id ? 'selected' : '' }}>
+                                    {{ $faena->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>

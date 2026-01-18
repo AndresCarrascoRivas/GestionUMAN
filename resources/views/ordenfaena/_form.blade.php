@@ -83,6 +83,45 @@
         @endif
     </div>
 
+        <!-- Script -->
+    @push('scripts')
+    <script>
+        $(document).ready(function() {
+            // inicializar select2 si lo usas
+            $('#faena_id, #equipo_minero_id').select2();
+
+            // cuando cambie la faena
+            $('#faena_id').on('change', function() {
+                let faenaId = $(this).val();
+
+                if(faenaId) {
+                    $.ajax({
+                        url: '/equipos-mineros/' + faenaId,
+                        type: 'GET',
+                        success: function(data) {
+                            let $equipoSelect = $('#equipo_minero_id');
+                            $equipoSelect.empty();
+                            $equipoSelect.append('<option value="">-- Selecciona un equipo minero --</option>');
+
+                            $.each(data, function(id, name) {
+                                $equipoSelect.append('<option value="'+id+'">'+name+'</option>');
+                            });
+
+                            // refrescar select2
+                            $equipoSelect.trigger('change');
+                        }
+                    });
+                } else {
+                    // si no hay faena seleccionada, limpiar equipos
+                    $('#equipo_minero_id').empty()
+                        .append('<option value="">-- Selecciona un equipo minero --</option>')
+                        .trigger('change');
+                }
+            });
+        });
+    </script>
+    @endpush
+
     <!-- Estado -->
     <div class="col-md-4">
         <label for="estado" class="block font-semibold">Estado</label>

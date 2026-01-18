@@ -5,9 +5,7 @@
     @section('content')
     <div class="container mt-4">
 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4">
-            💾 Versiones SD registradas
-        </h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4"> Versiones SD registradas</h2>
 
         {{-- ✅ Mensaje de éxito --}}
         @if(session('success'))
@@ -28,7 +26,6 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>#</th>
                     <th>versión</th>
                     <th>Descripción</th>
                     <th>Acciones</th>
@@ -37,7 +34,6 @@
             <tbody>
                 @forelse($versions as $version)
                     <tr>
-                        <td>{{ $version->id }}</td>
                         <td>{{ $version->version }}</td>
                         <td>{{ $version->descripcion ?? '—' }}</td>
                         <td>

@@ -1,10 +1,8 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            🔌 PCB UMAN registrados
-        </h2>
-    </x-slot>
+
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">PCB UMAN registrados</h2>
+
 
     <div class="container mt-4">
 
@@ -24,7 +22,6 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>#</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Acciones</th>
@@ -33,7 +30,6 @@
             <tbody>
                 @forelse($pcbs as $pcb)
                     <tr>
-                        <td>{{ $pcb->id }}</td>
                         <td>{{ $pcb->name }}</td>
                         <td>{{ $pcb->descripcion ?? '—' }}</td>
                         <td>

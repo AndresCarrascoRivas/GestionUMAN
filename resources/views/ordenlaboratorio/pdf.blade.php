@@ -69,7 +69,7 @@
             </td>
             <td>
                 <strong>Versión SD</strong>
-                {{ optional($ordenlaboratorio->versionSd)->name ?? '—' }}
+                {{ optional($ordenlaboratorio->versionSd)->version ?? '—' }}
             </td>
         </tr>
         <tr>

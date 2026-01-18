@@ -15,6 +15,7 @@
                             'Faena' => optional($ordenlaboratorio->faena)->name,
                             'Equipo Minero' => optional($ordenlaboratorio->equipoMinero)->name,
                             'Estado' => ucfirst($ordenlaboratorio->estado),
+                            'Versión SD' => optional($ordenlaboratorio->versionSd)->version,
                             'PCB UMAN' => optional($ordenlaboratorio->pcbUman)->name,
                             'Versión UMAN' => optional($ordenlaboratorio->versionUman)->name,
                             'Versión UPS' => $ordenlaboratorio->ups_version,

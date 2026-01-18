@@ -22,7 +22,6 @@
     <table class="table table-bordered table-hover align-middle">
         <thead class="table-light">
             <tr>
-                <th>#</th>
                 <th>Nombre</th>
                 <th>Faena</th>
                 <th>Acciones</th>
@@ -31,7 +30,6 @@
         <tbody>
             @forelse($tecnicos as $tecnico)
                 <tr>
-                    <td>{{ $tecnico->id }}</td>
                     <td>{{ $tecnico->name }}</td>
                     <td>
                         {{ $tecnico->faena?->name ?? '—' }} {{-- ✅ Muestra nombre de faena o guion --}}

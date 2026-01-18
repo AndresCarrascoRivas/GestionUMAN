@@ -9,15 +9,31 @@ use App\Models\PcbUman;
 use App\Models\VersionSd;
 use App\Models\VersionUman;
 use App\Exports\EquiposUmanExport;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EquipoUmanController extends Controller
 {
-    public function index()
-    {
-        $equipos = EquipoUman::with(['tecnico','versionSd','versionUman','pcbUman'])->paginate(10);
-        return view('equiposUman.index', compact('equipos',));
+    public function index(Request $request)
+{
+    $query = EquipoUman::with(['tecnico','versionSd','versionUman','pcbUman'])
+                       ->orderByDesc('serial');
+
+    if ($request->filled('serial')) {
+        $query->where('serial', 'like', '%'.$request->serial.'%');
     }
+
+    if ($request->filled('tecnico_id')) {
+        $query->where('tecnico_id', $request->tecnico_id);
+    }
+
+    $equipos = $query->paginate(10);
+
+    $tecnicos = Tecnico::orderBy('name')->get();
+
+    return view('equiposUman.index', compact('equipos','tecnicos'));
+}
+
 
     public function create()
     {
@@ -62,10 +78,11 @@ class EquipoUmanController extends Controller
 
         return response()->json([
             'pcb_uman_id'   => $equipo->pcb_uman_id,
+            'version_sd_id'   => $equipo->version_sd_id,
             'uman_version_id' => $equipo->uman_version_id,
             'rpi_version'   => $equipo->rpi_version,
             'ups_version'   => $equipo->ups_version,
-            'bam'           => $equipo->bam,
+            'bam'           => (bool) $equipo->bam,
             'marca_bam'     => $equipo->marca_bam,
             'chip'          => $equipo->chip,
             'imei_chip'     => $equipo->imei_chip,

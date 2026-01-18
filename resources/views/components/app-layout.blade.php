@@ -38,7 +38,7 @@
         $(document).ready(function() {
             // Inicializar todos los selects con clase .select2
             $('.select2').select2({
-                placeholder: "Selecciona una opción...",
+                placeholder: "Seleccionar",
                 allowClear: true,
                 width: 'resolve%'
             });

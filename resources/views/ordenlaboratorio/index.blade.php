@@ -21,6 +21,37 @@
             </a>
         </div>
 
+        <div class="mb-3">
+            <form method="GET" action="{{ route('ordenlaboratorio.index') }}">
+                <div class="row">
+                    {{-- Filtro por Serial --}}
+                    <div class="col-md-3">
+                        <label for="equipo_uman_serial" class="form-label fw-bold">Filtrar Serial:</label>
+                        <input type="text" name="equipo_uman_serial" id="equipo_uman_serial" 
+                            class="form-control"
+                            value="{{ request('equipo_uman_serial') }}"
+                            placeholder="Ingrese serial..."
+                            onchange="this.form.submit()">
+                    </div>
+
+                    {{-- Columna 2: Faena --}}
+                    <div class="col-md-3">
+                        <label for="faena_id" class="form-label fw-bold">Filtrar Faena:</label>
+                        <select name="faena_id" id="faena_id" class="form-select"
+                                onchange="this.form.submit()">
+                            <option value="">-- Todas --</option>
+                            @foreach($faenas as $faena)
+                                <option value="{{ $faena->id }}" 
+                                    {{ request('faena_id') == $faena->id ? 'selected' : '' }}>
+                                    {{ $faena->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-light">

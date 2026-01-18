@@ -28,6 +28,7 @@ class StoreOrdenLaboratorioRequest extends FormRequest
             'faena_id'           => ['required', 'exists:faenas,id'],
             'equipo_minero_id'   => ['nullable', 'exists:equipo_minero,id'],
             'estado'             => ['required', Rule::in(['pendiente', 'en_proceso', 'completado'])],
+            'version_sd_id'      => ['required', 'exists:version_sds,id'],
             'pcb_uman_id'        => ['required', 'exists:pcb_umans,id'],
             'uman_version_id'    => ['required', 'exists:version_umans,id'],
             'rpi_version'        => ['nullable', 'string', 'max:255'],

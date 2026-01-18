@@ -1,3 +1,21 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+.form-select2 + .select2-container .select2-selection--single {
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+
+.form-select2 + .select2-container .select2-selection__rendered {
+    padding-left: 12px;
+    line-height: 38px;
+}
+
+.form-select2 + .select2-container .select2-selection__arrow {
+    height: 38px;
+    top: 0;
+    display: flex;
+    align-items: flex-end;   /* 👈 esto baja la flecha */
+    padding-bottom: 6px;     /* ajuste fino */
+}

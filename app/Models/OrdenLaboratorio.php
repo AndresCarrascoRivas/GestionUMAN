@@ -15,6 +15,7 @@ class OrdenLaboratorio extends Model
         'equipo_minero_id',
         'estado',
         'pcb_uman_id',
+        'version_sd_id',
         'ups_version',
         'rpi_version',
         'uman_version_id',

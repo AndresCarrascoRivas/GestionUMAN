@@ -20,13 +20,23 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class OrdenLaboratorioController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $ordenes = OrdenLaboratorio::with(['tecnico', 'faena', 'equipoMinero', 'equipoUman'])
-            ->orderByDesc('id')
-            ->paginate(10);
+        $query = OrdenLaboratorio::with(['tecnico', 'faena', 'equipoMinero', 'equipoUman'])
+                                ->orderByDesc('id');
 
-        return view('ordenlaboratorio.index', compact('ordenes'));
+        if ($request->filled('equipo_uman_serial')) {
+            $query->where('equipo_uman_serial', 'like', '%'.$request->equipo_uman_serial.'%');
+        }
+
+        if ($request->filled('faena_id')) {
+            $query->where('faena_id', $request->faena_id);
+        }
+
+        $ordenes = $query->paginate(10);
+        $faenas = Faena::orderBy('name')->get();
+
+        return view('ordenlaboratorio.index', compact('ordenes','faenas'));
     }
 
     public function create()
@@ -35,16 +45,45 @@ class OrdenLaboratorioController extends Controller
         $tecnicos = Tecnico::pluck('name', 'id');
         $faenas = Faena::pluck('name', 'id');
         $equiposMineros = EquipoMinero::pluck('name', 'id');
-        $umanVersions = VersionUman::all();
-        $pcbUmans = PcbUman::all();
 
-        return view('ordenlaboratorio.create', compact('equiposUMAN', 'tecnicos', 'faenas', 'equiposMineros',
-         'pcbUmans', 'umanVersions'));
+        $umanVersions = VersionUman::pluck('name', 'id');
+        $versionSds   = VersionSd::pluck('version', 'id'); 
+        $pcbUmans     = PcbUman::pluck('name', 'id');
+
+        return view('ordenlaboratorio.create', compact(
+            'equiposUMAN',
+            'tecnicos',
+            'faenas',
+            'equiposMineros',
+            'umanVersions',
+            'versionSds',
+            'pcbUmans'
+        ));
     }
+
 
     public function store(StoreOrdenLaboratorioRequest $request)
     {
-        OrdenLaboratorio::create($request->validated());
+        $orden = OrdenLaboratorio::create($request->validated());
+
+        // Buscar el equipo asociado
+        $equipo = EquipoUman::where('serial', $orden->equipo_uman_serial)->first();
+
+        if ($equipo) {
+            $equipo->update([
+                'pcb_uman_id'     => $orden->pcb_uman_id,
+                'pcb_antenna'     => $orden->pcb_antenna,
+                'radiometrix'     => $orden->radiometrix,
+                'ups_version'     => $orden->ups_version,
+                'rpi_version'     => $orden->rpi_version,
+                'version_sd_id'   => $orden->version_sd_id,
+                'uman_version_id' => $orden->uman_version_id,
+                'bam'             => $orden->bam,
+                'marca_bam'       => $orden->marca_bam,
+                'chip'            => $orden->chip,
+                'imei_chip'       => $orden->imei_chip,
+            ]);
+        }
         return redirect()->route('ordenlaboratorio.index')
                          ->with('success', 'orden creada correctamente.');
     }
@@ -62,16 +101,37 @@ class OrdenLaboratorioController extends Controller
         $tecnicos = Tecnico::pluck('name', 'id');
         $faenas = Faena::pluck('name', 'id');
         $equiposMineros = EquipoMinero::pluck('name', 'id');
-        $umanVersions = VersionUman::all();
-        $pcbUmans = PcbUman::all();
+        $umanVersions = VersionUman::pluck('name', 'id');
+        $versionSds   = VersionSd::pluck('version', 'id');
+        $pcbUmans     = PcbUman::pluck('name', 'id');
 
         return view('ordenlaboratorio.edit', compact('ordenlaboratorio', 'equiposUMAN', 'tecnicos',
-         'faenas', 'equiposMineros', 'umanVersions', 'pcbUmans'));
+         'faenas', 'equiposMineros', 'umanVersions', 'versionSds' ,'pcbUmans'));
     }
 
     public function update(UpdateOrdenLaboratorioRequest $request, OrdenLaboratorio $ordenlaboratorio)
     {
         $ordenlaboratorio->update($request->validated());
+
+            // Buscar el equipo asociado
+        $equipo = EquipoUman::where('serial', $ordenlaboratorio->equipo_uman_serial)->first();
+
+        if ($equipo) {
+            $equipo->update([
+                'pcb_uman_id'     => $ordenlaboratorio->pcb_uman_id,
+                'pcb_antenna'     => $ordenlaboratorio->pcb_antenna,
+                'radiometrix'     => $ordenlaboratorio->radiometrix,
+                'ups_version'     => $ordenlaboratorio->ups_version,
+                'rpi_version'     => $ordenlaboratorio->rpi_version,
+                'version_sd_id'   => $ordenlaboratorio->version_sd_id,
+                'uman_version_id' => $ordenlaboratorio->uman_version_id,
+                'bam'             => $ordenlaboratorio->bam,
+                'marca_bam'       => $ordenlaboratorio->marca_bam,
+                'chip'            => $ordenlaboratorio->chip,
+                'imei_chip'       => $ordenlaboratorio->imei_chip,
+                'estado'          => $ordenlaboratorio->estado,
+            ]);
+        }
 
         return redirect()->route('ordenlaboratorio.index')
                          ->with('success', 'Orden actualizada correctamente.');
@@ -84,6 +144,7 @@ class OrdenLaboratorioController extends Controller
             'faena',
             'equipoMinero',
             'equipoUman',
+            'versionSd',
             'pcbUman',
             'versionUman'
         ])->findOrFail($id);

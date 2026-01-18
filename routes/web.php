@@ -33,6 +33,8 @@ Route::resource('tecnicos', TecnicoController::class);
 Route::resource('faenas', FaenaController::class);
 
 Route::resource('equiposmineros', EquipoMineroController::class);
+Route::get('/equipos-mineros/{faena}', [EquipoMineroController::class, 'getByFaena'])
+    ->name('equiposmineros.getByFaena');
 
 Route::resource('checkfaenas', CheckFaenasController::class);
 

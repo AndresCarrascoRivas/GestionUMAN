@@ -8,10 +8,18 @@ use Illuminate\Http\Request;
 
 class EquipoMineroController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $equiposmineros = EquipoMinero::orderBy('name')->paginate(10);
-        return view('equiposmineros.index', compact('equiposmineros'));
+        $query = EquipoMinero::with(['faena'])
+                            ->orderByDesc('id');
+
+            if ($request->filled('faena_id')) {
+                $query->where('faena_id', $request->faena_id);
+            }
+
+        $equiposmineros = $query->paginate(10);
+        $faenas = Faena::orderBy('name')->get();
+        return view('equiposmineros.index', compact('equiposmineros', 'faenas'));
     }
 
     public function create()
@@ -69,5 +77,12 @@ class EquipoMineroController extends Controller
         $equiposminero->delete();
 
         return redirect()->route('equiposmineros.index')->with('success', 'Equipo Minero eliminado.');
+    }
+
+    public function getByFaena($faenaId)
+    {
+        $equipos = EquipoMinero::where('faena_id', $faenaId)->pluck('name', 'id');
+
+        return response()->json($equipos);
     }
 }

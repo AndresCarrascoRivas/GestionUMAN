@@ -9,8 +9,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link active" href="/">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('tecnicos.index') }}">Técnicos</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('faenas.index') }}">Faenas</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('tecnicos.index') }}">Técnicos</a></li>
 
                 <!-- ✅ Dropdown Componentes -->
         <li class="nav-item dropdown">

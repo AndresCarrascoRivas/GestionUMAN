@@ -16,10 +16,23 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class OrdenFaenaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $ordenesFaena = OrdenFaena::with(['equipoMinero', 'faena'])->orderBy('id', 'desc')->paginate(10);
-        return view('ordenfaena.index', compact('ordenesFaena'));
+        $query = OrdenFaena::with(['faena', 'equipoMinero'])
+                            ->orderByDesc('id');
+
+            if ($request->filled('faena_id')) {
+                $query->where('faena_id', $request->faena_id);
+            }
+
+            if ($request->filled('equipo_minero_id')){
+                $query->where('equipo_minero_id', $request->equipo_minero_id);
+            }
+
+        $ordenesFaena = $query->paginate(10);
+        $faenas = Faena::orderBy('name')->get();
+        $equiposMinero = EquipoMinero::orderby('name')->get();
+        return view('ordenfaena.index', compact('ordenesFaena', 'faenas', 'equiposMinero'));
     }
 
     public function create()

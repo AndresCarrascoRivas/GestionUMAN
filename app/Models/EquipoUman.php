@@ -57,7 +57,8 @@ class EquipoUman extends Model
 
     public function ordenesLaboratorio()
         {
-            return $this->hasMany(OrdenLaboratorio::class, 'equipo_uman_serial', 'serial');
+            return $this->hasMany(OrdenLaboratorio::class, 'equipo_uman_serial', 'serial')
+                        ->orderByDesc('created_at');
         }
 
     public function getRouteKeyName()

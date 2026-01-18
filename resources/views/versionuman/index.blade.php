@@ -1,10 +1,7 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            🔌 Versiones UMAN registradas
-        </h2>
-    </x-slot>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight"> Versiones UMAN registradas</h2>
+
 
     <div class="container mt-4">
 
@@ -27,7 +24,6 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>#</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Acciones</th>
@@ -36,7 +32,6 @@
             <tbody>
                 @forelse($versiones as $version)
                     <tr>
-                        <td>{{ $version->id }}</td>
                         <td>{{ $version->name }}</td>
                         <td>{{ $version->descripcion ?? '—' }}</td>
                         <td>

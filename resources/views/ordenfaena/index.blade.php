@@ -22,6 +22,44 @@
             </a>
         </div>
 
+        <div class="mb-3">
+            <form method="GET" action="{{ route('ordenfaena.index') }}">
+                <div class="row">
+
+                    {{-- Columna 1: Faena --}}
+                    <div class="col-md-3">
+                        <label for="faena_id" 
+                        class="form-label fw-bold">Filtrar Faena:</label>
+                        <select name="faena_id" id="faena_id" class="form-select"
+                                onchange="this.form.submit()">
+                            <option value="">-- Todas --</option>
+                            @foreach($faenas as $faena)
+                                <option value="{{ $faena->id }}" 
+                                    {{ request('faena_id') == $faena->id ? 'selected' : '' }}>
+                                    {{ $faena->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- Columna 2: Equipo Minero --}}
+                    <div class="col-md-3">
+                        <label for="equipo_minero_id" class="form-label fw-bold">Filtrar Equipo Minero:</label>
+                        <select name="equipo_minero_id" id="equipo_minero_id" 
+                                class="form-select select2" onchange="this.form.submit()">
+                            <option value="">-- Todos --</option>
+                            @foreach($equiposMinero as $equipoMinero)
+                                <option value="{{ $equipoMinero->id }}" 
+                                    {{ request('equipo_minero_id') == $equipoMinero->id ? 'selected' : '' }}>
+                                    {{ $equipoMinero->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>

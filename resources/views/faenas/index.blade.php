@@ -22,7 +22,6 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>#</th>
                     <th>Nombre</th>
                     <th>Acciones</th>
                 </tr>
@@ -30,7 +29,6 @@
             <tbody>
                 @forelse($faenas as $faena)
                     <tr>
-                        <td>{{ $faena->id }}</td>
                         <td>{{ $faena->nombre ?? $faena->name }}</td>
                         <td>
                             <a href="{{ route('faenas.edit', $faena->id) }}" class="btn btn-sm btn-warning">✏️ Editar</a>

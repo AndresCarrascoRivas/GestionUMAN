@@ -80,7 +80,7 @@
                     <th class="border px-4 py-2">Antena GPS</th>
                     <th class="border px-4 py-2">Conexión Eléctrica</th>
                     <th class="border px-4 py-2">Sensores Internos</th>
-                    <th class="border px-4 py-2">Observación</th>
+                    <th class="border px-4 py-2">Ver</th>
                 </tr>
             </thead>
             <tbody>
@@ -97,7 +97,12 @@
                         <td class="border px-4 py-2">{{ $check->antena_gps ? '✔️' : '❌' }}</td>
                         <td class="border px-4 py-2">{{ $check->conexion_electrica ? '✔️' : '❌' }}</td>
                         <td class="border px-4 py-2">{{ $check->sensores_internos ? '✔️' : '❌' }}</td>
-                        <td class="border px-4 py-2">{{ $check->observacion }}</td>
+                        <td>
+                            {{-- ✅ Botón Ver --}}
+                            <a href="{{ route('checkfaenas.show', $check) }}" class="btn btn-sm btn-info text-white">
+                                👁️ Ver
+                            </a>
+                        </td>
                     </tr>
                 @empty
                     <tr>

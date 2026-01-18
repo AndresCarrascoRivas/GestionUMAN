@@ -14,7 +14,7 @@ class CheckFaenasController extends Controller
         public function index(Request $request)
         {
             $query = CheckFaena::with(['tecnico', 'faena', 'equipoMinero'])
-                            ->orderBy('id');
+                            ->orderByDesc('id');
 
             if ($request->filled('faena_id')) {
                 $query->where('faena_id', $request->faena_id);
@@ -51,5 +51,11 @@ class CheckFaenasController extends Controller
         CheckFaena::create($request->validated());
         return redirect()->route('checkfaenas.index')
                          ->with('success', 'check de faena creado correctamente.');
+    }
+
+    public function show(CheckFaena $checkfaena)
+    {
+        $checkfaena->load(['tecnico', 'faena', 'equipoMinero']);
+        return view('checkfaenas.show', compact('checkfaena'));
     }
 }
