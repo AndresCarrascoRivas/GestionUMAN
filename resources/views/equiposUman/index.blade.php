@@ -58,10 +58,10 @@
                 <tr>
                     <th>Serial</th>
                     <th>Técnico</th>
-                    <th>Estado</th>
+                    <th>Lugar</th>
                     <th>Modelo UMAN</th>
-                    <th>Versión SD</th>
-                    <th>PCB UMAN</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,14 +73,21 @@
                             </a>
                         </td>
                         <td>{{ $equipo->tecnico->name ?? 'Sin técnico' }}</td>
-                        <td>{{ ucfirst($equipo->estado) }}</td>
+                        <td>{{ $equipo->faena->name ?? 'Sin lugar' }}</td>
                         <td>{{ $equipo->modelo_uman ?? '-' }}</td>
-                        <td>{{ $equipo->versionSd->version ?? '-' }}</td>
-                        <td>{{ $equipo->pcbUman->name ?? '-' }}</td>
+                        <td>{{ ucfirst($equipo->estado) ?? '-' }}</td>
+                        <td>
+                            <a href="{{ route('equiposUman.edit', $equipo) }}" 
+                            class="btn btn-sm btn-primary">
+                                Editar
+                            </a>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="text-center text-muted">No hay equipos registrados.</td>
+                        <td colspan="6" class="text-center text-muted">
+                            No hay equipos registrados.
+                        </td>
                     </tr>
                 @endforelse
             </tbody>

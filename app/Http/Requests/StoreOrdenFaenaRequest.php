@@ -27,9 +27,9 @@ class StoreOrdenFaenaRequest extends FormRequest
             'faena_id'=> 'required',
             'fecha_trabajo'=> 'required',
             'equipo_minero_id'=> 'required',
-            'estado' => ['required', Rule::in(['pendiente', 'en_proceso', 'completado'])],
+            'estado' => ['required', Rule::in(['Pendiente', 'En proceso', 'Completado'])],
             'uman_serial' => ['required', 'string', 'min:5', 'exists:equipos_uman,serial'],
-            'cambio_uman' => ['required', 'boolean'],
+            'cambio_uman' => 'boolean',
             'serial_nueva_uman' => [
                 'nullable', // ← permite que sea opcional por defecto
                 'required_if:cambio_uman,1', // ← obligatorio solo si cambio_uman es verdadero

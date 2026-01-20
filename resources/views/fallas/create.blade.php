@@ -1,23 +1,22 @@
 <x-app-layout>
 
-    @section('title', 'Nueva Versión SD')
+    @section('title', 'Nueva Falla')
 
     @section('content')
     <div class="container mt-4">
 
-        <h2 class="mb-4">Crear nueva Imagen SD</h2>
+        <h2 class="mb-4"> Crear nuevo PCB UMAN</h2>
 
         <div class="card shadow-sm">
             <div class="card-body">
 
-                <form action="{{ route('versionsd.store') }}" method="POST">
+                <form action="{{ route('fallas.store') }}" method="POST">
                     @csrf
 
-                    {{-- ✅ Formulario parcial reutilizable --}}
-                    @include('versionsd._form')
+                    @include('fallas._form')
 
                     <div class="text-end">
-                        <a href="{{ route('versionsd.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('fallas.index') }}" class="btn btn-secondary">Cancelar</a>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
 
@@ -27,5 +26,4 @@
         </div>
 
     </div>
-
 </x-app-layout>

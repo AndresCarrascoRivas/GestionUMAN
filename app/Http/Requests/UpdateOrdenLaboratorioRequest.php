@@ -38,7 +38,7 @@ class UpdateOrdenLaboratorioRequest extends FormRequest
             'marca_bam'          => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
             'chip'               => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
             'imei_chip'          => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
-            'falla'              => ['nullable', 'string', 'max:255'],
+            'falla_id'          => ['required', 'exists:falla,id'],
             'descripcion_falla'  => ['nullable', 'string'],
             'detalle_reparacion' => ['nullable', 'string'],
             'fecha_ingreso'      => ['required', 'date'],

@@ -23,7 +23,7 @@ class OrdenLaboratorio extends Model
         'marca_bam',
         'chip',
         'imei_chip',
-        'falla',
+        'falla_id',
         'descripcion_falla',
         'detalle_reparacion',
         'fecha_ingreso',
@@ -64,6 +64,11 @@ class OrdenLaboratorio extends Model
     public function versionSd()
     {
         return $this->belongsTo(VersionSd::class, 'version_sd_id');
+    }
+
+        public function falla()
+    {
+        return $this->belongsTo(Falla::class);
     }
 
 }

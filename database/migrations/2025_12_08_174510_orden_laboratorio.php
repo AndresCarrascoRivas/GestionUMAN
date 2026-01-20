@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('faena_id')->constrained('faenas');
             $table->foreignId('equipo_minero_id')->nullable()->constrained('equipo_minero');
             $table->string('estado');
+            $table->foreignId('version_sd_id')->constrained('version_sds');
             $table->foreignId('pcb_uman_id')->constrained('pcb_umans');
             $table->string('ups_version')->nullable();
             $table->string('rpi_version')->nullable();
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->string('marca_bam')->nullable();
             $table->string('chip')->nullable();
             $table->string('imei_chip')->nullable();
-            $table->string('falla')->nullable();
+            $table->foreignId('falla_id')->constrained('fallas');
             $table->text('descripcion_falla')->nullable();
             $table->text('detalle_reparacion')->nullable();
             $table->date('fecha_ingreso')->nullable();

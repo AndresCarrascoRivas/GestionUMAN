@@ -23,10 +23,11 @@ class StoreEquipoUmanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'serial'            => ['required', 'string', 'min:5', 'unique:equipos_uman,serial'],
+            'serial'            => ['required', 'string', 'min:6', 'unique:equipos_uman,serial'],
             'tecnico_id'        => ['required', 'exists:tecnicos,id'],
+            'faena_id'          => ['required', 'exists:faenas,id'],
             'estado'            => ['required', Rule::in(['activo', 'inactivo'])],
-            'modelo_uman'       => 'required|in:UMAN BLUE,UMAN CM4',
+            'modelo_uman'       => 'required|in:UMAN BLUE,UMAN G8',
             'uman_version_id'   => ['required', 'exists:version_umans,id'],
             'version_sd_id'     => ['required', 'exists:version_sds,id'],
             'pcb_uman_id'       => ['required', 'exists:pcb_umans,id'],

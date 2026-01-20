@@ -30,4 +30,9 @@ class Faena extends Model
         return $this->hasMany(CheckFaena::class);
     }
 
+    public function equipoUman()
+    {
+        return $this->belongsTo(EquipoUman::class, 'equipo_uman_serial', 'serial');
+    }
+
 }

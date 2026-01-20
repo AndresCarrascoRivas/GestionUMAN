@@ -16,6 +16,7 @@ class EquiposUmanExport implements FromCollection, WithHeadings
                 return [
                     $equipo->serial,
                     $equipo->tecnico->name ?? '—',
+                    $equipo->faena->name ?? '—',
                     ucfirst($equipo->estado),
                     $equipo->modelo_uman ?? '—',
                     $equipo->versionUman->name ?? '—',
@@ -41,6 +42,7 @@ class EquiposUmanExport implements FromCollection, WithHeadings
         return [
             'Serial',
             'Técnico',
+            'Lugar',
             'Estado',
             'Modelo UMAN',
             'Versión UMAN',

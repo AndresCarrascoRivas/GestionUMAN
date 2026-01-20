@@ -13,6 +13,7 @@ use App\Models\Tecnico;
 use App\Models\Faena;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\OrdenesLaboratorioExport;
+use App\Models\Falla;
 use App\Models\PcbUman;
 use App\Models\VersionSd;
 use App\Models\VersionUman;
@@ -45,6 +46,7 @@ class OrdenLaboratorioController extends Controller
         $tecnicos = Tecnico::pluck('name', 'id');
         $faenas = Faena::pluck('name', 'id');
         $equiposMineros = EquipoMinero::pluck('name', 'id');
+        $fallas = Falla::pluck('name', 'id');
 
         $umanVersions = VersionUman::pluck('name', 'id');
         $versionSds   = VersionSd::pluck('version', 'id'); 
@@ -57,7 +59,8 @@ class OrdenLaboratorioController extends Controller
             'equiposMineros',
             'umanVersions',
             'versionSds',
-            'pcbUmans'
+            'pcbUmans',
+            'fallas'
         ));
     }
 

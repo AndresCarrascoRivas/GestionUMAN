@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EquipoUmanController;
 use App\Http\Controllers\FaenaController;
+use App\Http\Controllers\FallaController;
 use App\Http\Controllers\OrdenFaenaController;
 use App\Http\Controllers\OrdenLaboratorioController;
 use App\Http\Controllers\PcbUmanController;
@@ -32,7 +33,8 @@ Route::resource('tecnicos', TecnicoController::class);
 
 Route::resource('faenas', FaenaController::class);
 
-Route::resource('equiposmineros', EquipoMineroController::class);
+Route::resource('equiposUman', EquipoUmanController::class)
+    ->parameters(['equiposUman' => 'equipoUman',])->except(['destroy']);
 Route::get('/equipos-mineros/{faena}', [EquipoMineroController::class, 'getByFaena'])
     ->name('equiposmineros.getByFaena');
 
@@ -43,3 +45,5 @@ Route::resource('pcbuman', PcbUmanController::class);
 Route::resource('versionsd', VersionSdController::class);
 
 Route::resource('versionuman', VersionUmanController::class);
+
+route::resource('fallas', FallaController::class);

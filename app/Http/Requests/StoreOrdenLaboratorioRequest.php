@@ -23,7 +23,7 @@ class StoreOrdenLaboratorioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'equipo_uman_serial' => ['required', 'string', 'min:5', 'exists:equipos_uman,serial'],
+            'equipo_uman_serial' => ['required', 'string', 'min:6', 'exists:equipos_uman,serial'],
             'tecnico_id'         => ['required', 'exists:tecnicos,id'],
             'faena_id'           => ['required', 'exists:faenas,id'],
             'equipo_minero_id'   => ['nullable', 'exists:equipo_minero,id'],
@@ -37,7 +37,7 @@ class StoreOrdenLaboratorioRequest extends FormRequest
             'marca_bam'          => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
             'chip'               => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
             'imei_chip'          => ['nullable', 'required_if:bam,1', 'string', 'max:255'],
-            'falla'              => ['nullable', 'string', 'max:255'],
+            'falla_id'           => ['required', 'exists:fallas,id'],
             'descripcion_falla'  => ['nullable', 'string'],
             'detalle_reparacion' => ['nullable', 'string'],
             'fecha_ingreso'      => ['required', 'date'],

@@ -9,6 +9,7 @@ use App\Models\PcbUman;
 use App\Models\VersionSd;
 use App\Models\VersionUman;
 use App\Exports\EquiposUmanExport;
+use App\Models\Faena;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -38,10 +39,11 @@ class EquipoUmanController extends Controller
     public function create()
     {
         $tecnicos = Tecnico::all();
+        $faenas = Faena::pluck('name', 'id');
         $umanVersions = VersionUman::all();
         $versionSds = VersionSd::all();
         $pcbUmans = PcbUman::all();
-        return view('equiposUman.create', compact('tecnicos', 'umanVersions','versionSds', 'pcbUmans'));
+        return view('equiposUman.create', compact('tecnicos', 'faenas' , 'umanVersions','versionSds', 'pcbUmans'));
     }
 
     public function store(StoreEquipoUmanRequest $request)
@@ -60,16 +62,21 @@ class EquipoUmanController extends Controller
 
     public function edit(EquipoUman $equipoUman)
     {
-        $tecnicos = Tecnico::where('estado', 'activo')->get();
-        return view('equiposUman.edit', compact('equipoUman', 'tecnicos'));
+        $faenas = Faena::all();
+        return view('equiposUman.edit', compact('equipoUman', 'faenas'));
     }
 
-    public function update(StoreEquipoUmanRequest $request, EquipoUman $equipoUman)
+    public function update(Request $request, EquipoUman $equipoUman)
     {
-        $equipoUman->update($request->validated());
+        $validated = $request->validate([
+            'estado'   => ['required', 'string', 'max:50'],
+            'faena_id' => ['required', 'exists:faenas,id'],
+        ]);
+
+        $equipoUman->update($validated);
 
         return redirect()->route('equiposUman.index')
-                         ->with('success', 'Equipo UMAN actualizado correctamente.');
+                        ->with('success', 'Equipo UMAN actualizado correctamente.');
     }
 
     public function getData($serial)

@@ -128,9 +128,9 @@
         <select name="estado" id="estado"
             class="w-full px-2 py-1 border rounded select @error('estado') is-invalid @enderror" required>
             <option value="">-- Selecciona el estado --</option>
-            <option value="pendiente" {{ old('estado', $ordenfaena->estado ?? '') == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-            <option value="en_proceso" {{ old('estado', $ordenfaena->estado ?? '') == 'en_proceso' ? 'selected' : '' }}>En proceso</option>
-            <option value="completado" {{ old('estado', $ordenfaena->estado ?? '') == 'completado' ? 'selected' : '' }}>Completado</option>
+            <option value="Pendiente" {{ old('estado', $ordenfaena->estado ?? '') == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+            <option value="En proceso" {{ old('estado', $ordenfaena->estado ?? '') == 'En proceso' ? 'selected' : '' }}>En proceso</option>
+            <option value="Completado" {{ old('estado', $ordenfaena->estado ?? '') == 'Completado' ? 'selected' : '' }}>Completado</option>
         </select>
         @error('estado')
             <div class="invalid-feedback d-block">{{ $message }}</div>

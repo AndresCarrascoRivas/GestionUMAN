@@ -12,17 +12,21 @@
             </div>
 
             <div class="card-body">
-                <h4 class="mb-3">
+                <h4 class="mb-2">
                     <span class="text-muted">Serial:</span> {{ $equiposUman->serial }}
                 </h4>
 
-                <div class="row mb-2">
-                    <div class="col-md-6">
+                <div class="row mb-4">
+                    <div class="col-md-4">
                         <strong>Técnico asignado:</strong>
                         {{ $equiposUman->tecnico?->name ?? '—' }}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <strong>Estado:</strong> {{ ucfirst($equiposUman->estado) }}
+                    </div>
+                    <div class="col-md-3">
+                        <strong>Faena:</strong>
+                        {{ $equiposUman->faena?->name ?? '—' }}
                     </div>
                 </div>
 
@@ -117,7 +121,7 @@
                                         {{ $orden->id }}
                                     </a>
                                 </td>
-                                <td>{{ $orden->falla ?? '—' }}</td>
+                                <td>{{ optional($orden->faena)->name ?? '—' }}</td>
                                 <td>{{ ucfirst($orden->estado) }}</td>
                                 <td>{{ $orden->created_at?->format('d/m/Y') ?? '—' }}</td>
                             </tr>

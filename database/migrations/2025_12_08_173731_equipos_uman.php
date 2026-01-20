@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('equipos_uman', function (Blueprint $table) {
             $table->string('serial')->primary(); // clave primaria string
             $table->foreignId('tecnico_id')->constrained('tecnicos');
+            $table->foreignId('faena_id')->constrained('faenas');
             $table->string('estado');
             $table->string('modelo_uman')->nullable();
             $table->foreignId('uman_version_id')->constrained('version_umans');

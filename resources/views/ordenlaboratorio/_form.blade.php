@@ -91,8 +91,6 @@
         @enderror
     </div>
 
-    
-
     <!-- Equipo Minero -->
     <div>
         <label for="equipo_minero_id" class="block font-semibold">Equipo Minero</label>
@@ -249,7 +247,6 @@
     @foreach([
         'ups_version' => 'Versión UPS',
         'rpi_version' => 'Versión Raspberry',
-        'falla' => 'Falla'
     ] as $field => $label)
         <div>
             <label for="{{ $field }}" class="block font-semibold">{{ $label }}</label>
@@ -262,7 +259,23 @@
         </div>
     @endforeach
 
-
+    <!-- Falla -->
+    <div>
+        <label for="falla_id" class="block font-semibold">Falla</label>
+        <select name="falla_id" id="falla_id"
+            class="w-full px-2 py-1 border rounded @error('falla_id') is-invalid @enderror">
+            <option value="">-- Selecciona una falla --</option>
+            @foreach($fallas as $id => $name)
+                <option value="{{ $id }}"
+                    {{ old('falla_id', $ordenlaboratorio->falla_id ?? '') == $id ? 'selected' : '' }}>
+                    {{ $name }}
+                </option>
+            @endforeach
+        </select>
+        @error('falla_id')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
+    </div>
 
     <!-- Descripción Falla -->
     <div class="col-span-2">

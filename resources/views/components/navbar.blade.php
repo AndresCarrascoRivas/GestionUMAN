@@ -21,7 +21,7 @@
           <ul class="dropdown-menu" aria-labelledby="componentesDropdown">
             <li><a class="dropdown-item" href="{{ route('pcbuman.index') }}">PCB UMAN</a></li>
             <li><a class="dropdown-item" href="{{ route('versionuman.index') }}">Versión UMAN</a></li>
-            <li><a class="dropdown-item" href="{{ route('versionsd.index') }}">Versión SD</a></li>
+            <li><a class="dropdown-item" href="{{ route('versionsd.index') }}">Imagen SD</a></li>
           </ul>
         </li>
 
@@ -32,6 +32,7 @@
             Laboratorio
           </a>
           <ul class="dropdown-menu" aria-labelledby="laboratorioDropdown">
+            <li class="nav-item"><a class="nav-link" href="{{ route('fallas.index') }}">Fallas</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ordenlaboratorio.index') }}">Órdenes Laboratorio</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('equiposUman.index') }}">Equipos UMAN</a></li>
           </ul>

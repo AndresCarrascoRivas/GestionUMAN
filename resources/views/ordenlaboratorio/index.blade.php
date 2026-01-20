@@ -75,7 +75,7 @@
                             <td>{{ $orden->equipoUMAN->serial ?? '—' }}</td>
                             <td>{{ ucfirst(optional($orden->faena)->name ?? '—') }}</td>
                             <td>{{ ucfirst($orden->estado) }}</td>
-                            <td>{{ ucfirst($orden->falla ?? '—') }}</td>
+                            <td>{{ ucfirst(optional($orden->falla)->name ?? '—') }}</td>
                             <td>{{ $orden->fecha_ingreso ? \Carbon\Carbon::parse($orden->fecha_ingreso)->format('d-m-Y') : '—' }}</td>
                         </tr>
                     @empty

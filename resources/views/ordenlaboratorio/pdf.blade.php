@@ -68,7 +68,7 @@
                 {{ optional($ordenlaboratorio->versionUman)->name ?? '—' }}
             </td>
             <td>
-                <strong>Versión SD</strong>
+                <strong>Imagen SD</strong>
                 {{ optional($ordenlaboratorio->versionSd)->version ?? '—' }}
             </td>
         </tr>
@@ -105,7 +105,7 @@
         <tr>
             <td>
                 <strong>Falla</strong>
-                {{ $ordenlaboratorio->falla ?? '—' }}
+                {{ optional($ordenlaboratorio->falla)->name ?? '—' }}
             </td>
             <td>
                 <strong>Descripción de la Falla</strong>

@@ -29,6 +29,23 @@
         @enderror
     </div>
 
+        <!-- Faena -->
+    <div class="col-md-4">
+        <label for="faena_id" class="form-label">Faena</label>
+        <select name="faena_id" id="faena_id"
+            class="form-select form-select-sm @error('faena_id') is-invalid @enderror">
+            <option value="">-- Selecciona una faena --</option>
+            @foreach($faenas as $id => $name)
+                <option value="{{ $id }}" {{ old('faena_id', $equipoUman->faena_id ?? '') == $id ? 'selected' : '' }}>
+                    {{ $name }}
+                </option>
+            @endforeach
+        </select>
+        @error('faena_id')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
+    </div>
+
     <!-- Estado -->
     <div class="col-md-3">
         <label for="estado" class="form-label">Estado</label>
@@ -48,7 +65,7 @@
         <select name="modelo_uman" id="modelo_uman"
             class="form-select form-select-sm @error('modelo_uman') is-invalid @enderror">
             <option value="UMAN BLUE" {{ old('modelo_uman') == 'UMAN BLUE' ? 'selected' : '' }}>UMAN BLUE</option>
-            <option value="UMAN CM4" {{ old('modelo_uman') == 'UMAN CM4' ? 'selected' : '' }}>UMAN CM4</option>
+            <option value="UMAN G8" {{ old('modelo_uman') == 'UMAN G8' ? 'selected' : '' }}>UMAN G8</option>
         </select>
         @error('modelo_uman')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -73,9 +90,9 @@
         @enderror
     </div>
 
-    <!-- Versión SD -->
+    <!-- Imagen SD -->
     <div class="col-md-4">
-        <label for="version_sd_id" class="form-label">Versión SD</label>
+        <label for="version_sd_id" class="form-label">Imagen SD</label>
         <select name="version_sd_id" id="version_sd_id"
             class="form-select form-select-sm @error('version_sd_id') is-invalid @enderror" required>
             <option value="">Seleccione versión SD</option>

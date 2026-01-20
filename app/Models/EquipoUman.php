@@ -13,7 +13,8 @@ class EquipoUman extends Model
 
     protected $fillable = [
         'serial', 
-        'tecnico_id', 
+        'tecnico_id',
+        'faena_id', 
         'estado',
         'modelo_uman',
         'uman_version_id',
@@ -33,6 +34,11 @@ class EquipoUman extends Model
     public function tecnico()
     {
         return $this->belongsTo(Tecnico::class);
+    }
+
+    public function faena()
+    {
+        return $this->belongsTo(Faena::class);
     }
 
     public function versionSd()

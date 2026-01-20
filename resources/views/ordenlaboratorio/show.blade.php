@@ -24,7 +24,7 @@
                             'Marca BAM' => $ordenlaboratorio->marca_bam,
                             'Chip' => $ordenlaboratorio->chip,
                             'IMEI Chip' => $ordenlaboratorio->imei_chip,
-                            'Falla' => $ordenlaboratorio->falla,
+                            'Falla' => optional($ordenlaboratorio->falla)->name,
                             'Descripción de la Falla' => $ordenlaboratorio->descripcion_falla,
                             'Detalle de Reparación' => $ordenlaboratorio->detalle_reparacion,
                             'Fecha de Ingreso' => $ordenlaboratorio->fecha_ingreso ? \Carbon\Carbon::parse($ordenlaboratorio->fecha_ingreso)->format('d-m-Y') : '—',
