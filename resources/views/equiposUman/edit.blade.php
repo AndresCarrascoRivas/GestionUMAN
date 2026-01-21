@@ -1,11 +1,19 @@
 <x-app-layout>
     <form action="{{ route('equiposUman.update', ['equipoUman' => $equipoUman]) }}" method="POST">
-        
         @csrf
         @method('PUT')
 
+        <!-- Serial -->
+        <div class="mb-4">
+            <label for="serial" class="block font-semibold">Serial del equipo</label>
+            <input type="text" id="serial" name="serial"
+                   value="{{ $equipoUman->serial }}"
+                   class="w-full border rounded bg-gray-100"
+                   readonly>
+        </div>
+
         <!-- Estado -->
-        <div>
+        <div class="mb-4">
             <label for="estado" class="block font-semibold">Estado</label>
             <select name="estado" id="estado" class="w-full border rounded">
                 <option value="activo" {{ old('estado', $equipoUman->estado) == 'activo' ? 'selected' : '' }}>Activo</option>
@@ -18,7 +26,7 @@
         </div>
 
         <!-- Faena -->
-        <div>
+        <div class="mb-4">
             <label for="faena_id" class="block font-semibold">Faena</label>
             <select name="faena_id" id="faena_id" class="w-full border rounded">
                 <option value="">-- Selecciona una faena --</option>
@@ -34,7 +42,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">
+        <button type="submit" class="btn btn-primary btn-sm">
             Guardar cambios
         </button>
     </form>

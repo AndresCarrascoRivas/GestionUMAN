@@ -4,7 +4,7 @@
 
     <!-- Serial UMAN -->
     <div>
-        <label for="equipo_uman_serial" class="block font-semibold">Serial UMAN</label>
+        <label for="equipo_uman_serial" class="block font-semibold">Serial UMAN*</label>
 
         @if(isset($ordenlaboratorio))
             <!-- En EDIT solo mostramos el texto -->
@@ -59,7 +59,7 @@
 
     <!-- Técnico -->
     <div>
-        <label for="tecnico_id" class="block font-semibold">Técnico</label>
+        <label for="tecnico_id" class="block font-semibold">Técnico*</label>
         <select name="tecnico_id" id="tecnico_id"
             class="w-full px-2 py-1 border rounded select2 @error('tecnico_id') is-invalid @enderror">
             <option value="">-- Selecciona un técnico --</option>
@@ -76,7 +76,7 @@
 
     <!-- Faena -->
     <div>
-        <label for="faena_id" class="block font-semibold">Faena</label>
+        <label for="faena_id" class="block font-semibold">Faena*</label>
         <select name="faena_id" id="faena_id"
             class="w-full px-2 py-1 border rounded select2 @error('faena_id') is-invalid @enderror">
             <option value="">-- Selecciona una faena --</option>
@@ -149,7 +149,7 @@
 
     <!-- Estado -->
     <div>
-        <label for="estado" class="block font-semibold">Estado</label>
+        <label for="estado" class="block font-semibold">Estado*</label>
         <select name="estado" id="estado"
             class="w-full px-2 py-1 border rounded @error('estado') is-invalid @enderror">
             <option value="">-- Selecciona el estado --</option>
@@ -164,7 +164,7 @@
 
     <!-- Versión SD -->
     <div>
-        <label for="version_sd_id" class="form-label">Versión SD</label>
+        <label for="version_sd_id" class="form-label">Versión SD*</label>
         <select name="version_sd_id" id="version_sd_id"
             class="w-full px-2 py-1 border rounded @error('version_sd_id') is-invalid @enderror">
             <option value="">Seleccione versión SD</option>
@@ -182,7 +182,7 @@
 
     <!-- PCB UMAN -->
     <div>
-        <label for="pcb_uman_id" class="form-label">PCB UMAN</label>
+        <label for="pcb_uman_id" class="form-label">PCB UMAN*</label>
         <select name="pcb_uman_id" id="pcb_uman_id"
             class="w-full px-2 py-1 border rounded @error('pcb_uman_id') is-invalid @enderror">
             <option value="">Seleccione PCB UMAN</option>
@@ -200,7 +200,7 @@
 
     <!-- Versión UMAN -->
     <div>
-        <label for="uman_version_id" class="block font-semibold">Versión UMAN</label>
+        <label for="uman_version_id" class="block font-semibold">Versión UMAN*</label>
         <select name="uman_version_id" id="uman_version_id"
             class="w-full px-2 py-1 border rounded @error('uman_version_id') is-invalid @enderror">
             <option value="">Seleccione versión UMAN</option>
@@ -227,19 +227,19 @@
 
     <!-- Marca BAM -->
     <div id="marcaBamField" style="display:none;">
-        <label for="marca_bam">Marca BAM</label>
+        <label for="marca_bam">Marca BAM*</label>
         <input type="text" name="marca_bam" id="marca_bam">
     </div>
 
     <!-- Chip -->
     <div id="chipField" style="display:none;">
-        <label for="chip">Chip</label>
+        <label for="chip">Chip*</label>
         <input type="text" name="chip" id="chip">
     </div>
 
     <!-- IMEI Chip -->
     <div id="imeiChipField" style="display:none;">
-        <label for="imei_chip">IMEI Chip</label>
+        <label for="imei_chip">IMEI Chip*</label>
         <input type="text" name="imei_chip" id="imei_chip">
     </div>
 
@@ -261,7 +261,7 @@
 
     <!-- Falla -->
     <div>
-        <label for="falla_id" class="block font-semibold">Falla</label>
+        <label for="falla_id" class="block font-semibold">Falla*</label>
         <select name="falla_id" id="falla_id"
             class="w-full px-2 py-1 border rounded @error('falla_id') is-invalid @enderror">
             <option value="">-- Selecciona una falla --</option>
@@ -311,7 +311,7 @@
 
             <!-- Fechas -->
     @foreach([
-        'fecha_ingreso' => 'Fecha de Ingreso',
+        'fecha_ingreso' => 'Fecha de Ingreso*',
         'fecha_reparacion' => 'Fecha de Reparación'
     ] as $field => $label)
         <div>

@@ -54,10 +54,10 @@ class EquipoUmanController extends Controller
                          ->with('success', 'Equipo UMAN creado correctamente.');
     }
 
-    public function show(EquipoUman $equiposUman)
+    public function show(EquipoUman $equipoUman)
     {
-        $equiposUman->load(['tecnico','versionSd','versionUman','pcbUman', 'ordenesLaboratorio']);
-        return view('equiposUman.show', compact('equiposUman'));
+        $equipoUman->load(['tecnico','versionSd','versionUman','pcbUman', 'ordenesLaboratorio']);
+        return view('equiposUman.show', compact('equipoUman'));
     }
 
     public function edit(EquipoUman $equipoUman)

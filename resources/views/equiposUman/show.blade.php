@@ -13,95 +13,95 @@
 
             <div class="card-body">
                 <h4 class="mb-2">
-                    <span class="text-muted">Serial:</span> {{ $equiposUman->serial }}
+                    <span class="text-muted">Serial:</span> {{ $equipoUman->serial }}
                 </h4>
 
                 <div class="row mb-4">
                     <div class="col-md-4">
                         <strong>Técnico asignado:</strong>
-                        {{ $equiposUman->tecnico?->name ?? '—' }}
+                        {{ $equipoUman->tecnico?->name ?? '—' }}
                     </div>
                     <div class="col-md-2">
-                        <strong>Estado:</strong> {{ ucfirst($equiposUman->estado) }}
+                        <strong>Estado:</strong> {{ ucfirst($equipoUman->estado) }}
                     </div>
                     <div class="col-md-3">
                         <strong>Faena:</strong>
-                        {{ $equiposUman->faena?->name ?? '—' }}
+                        {{ $equipoUman->faena?->name ?? '—' }}
                     </div>
                 </div>
 
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <strong>Modelo UMAN:</strong> {{ $equiposUman->modelo_uman ?? '—' }}
+                        <strong>Modelo UMAN:</strong> {{ $equipoUman->modelo_uman ?? '—' }}
                     </div>
                     <div class="col-md-6">
-                        <strong>Versión UMAN:</strong> {{ $equiposUman->versionUman?->name ?? '—' }}
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <strong>Versión SD:</strong> {{ $equiposUman->versionSd?->version ?? '—' }}
-                    </div>
-                    <div class="col-md-6">
-                        <strong>PCB UMAN:</strong> {{ $equiposUman->pcbUman?->name ?? '—' }}
+                        <strong>Versión UMAN:</strong> {{ $equipoUman->versionUman?->name ?? '—' }}
                     </div>
                 </div>
 
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <strong>Versión Raspberry:</strong> {{ $equiposUman->rpi_version ?? '—' }}
+                        <strong>Versión SD:</strong> {{ $equipoUman->versionSd?->version ?? '—' }}
                     </div>
                     <div class="col-md-6">
-                        <strong>Versión UPS:</strong> {{ $equiposUman->ups_version ?? '—' }}
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <strong>PCB Antena:</strong> {{ $equiposUman->pcb_antenna ?? '—' }}
-                    </div>
-                    <div class="col-md-6">
-                        <strong>Radiometrix:</strong> {{ $equiposUman->radiometrix ?? '—' }}
+                        <strong>PCB UMAN:</strong> {{ $equipoUman->pcbUman?->name ?? '—' }}
                     </div>
                 </div>
 
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <strong>BAM:</strong> {{ $equiposUman->bam ? 'Sí' : 'No' }}
+                        <strong>Versión Raspberry:</strong> {{ $equipoUman->rpi_version ?? '—' }}
                     </div>
                     <div class="col-md-6">
-                        <strong>Marca BAM:</strong> {{ $equiposUman->marca_bam ?? '—' }}
+                        <strong>Versión UPS:</strong> {{ $equipoUman->ups_version ?? '—' }}
                     </div>
                 </div>
 
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <strong>Chip:</strong> {{ $equiposUman->chip ?? '—' }}
+                        <strong>PCB Antena:</strong> {{ $equipoUman->pcb_antenna ?? '—' }}
                     </div>
                     <div class="col-md-6">
-                        <strong>IMEI Chip:</strong> {{ $equiposUman->imei_chip ?? '—' }}
+                        <strong>Radiometrix:</strong> {{ $equipoUman->radiometrix ?? '—' }}
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <strong>BAM:</strong> {{ $equipoUman->bam ? 'Sí' : 'No' }}
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Marca BAM:</strong> {{ $equipoUman->marca_bam ?? '—' }}
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <strong>Chip:</strong> {{ $equipoUman->chip ?? '—' }}
+                    </div>
+                    <div class="col-md-6">
+                        <strong>IMEI Chip:</strong> {{ $equipoUman->imei_chip ?? '—' }}
                     </div>
                 </div>
 
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <strong>Fecha de Fabricación:</strong>
-                        {{ $equiposUman->fecha_fabricacion ? \Carbon\Carbon::parse($equiposUman->fecha_fabricacion)->format('d/m/Y') : '—' }}
+                        {{ $equipoUman->fecha_fabricacion ? \Carbon\Carbon::parse($equipoUman->fecha_fabricacion)->format('d/m/Y') : '—' }}
                     </div>
                 </div>
 
                 <hr>
 
                 <p class="text-muted mb-0">
-                    Última actualización: {{ $equiposUman->updated_at?->format('d/m/Y H:i') ?? '—' }}
+                    Última actualización: {{ $equipoUman->updated_at?->format('d/m/Y H:i') ?? '—' }}
                 </p>
 
                 <hr>
 
             <h5 class="mt-4">Órdenes de Laboratorio</h5>
 
-            @if($equiposUman->ordenesLaboratorio->isEmpty())
+            @if($equipoUman->ordenesLaboratorio->isEmpty())
                 <p class="text-muted">Este equipo no tiene órdenes de laboratorio asociadas.</p>
             @else
                 <table class="table table-sm table-bordered">
@@ -114,7 +114,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($equiposUman->ordenesLaboratorio as $orden)
+                        @foreach($equipoUman->ordenesLaboratorio as $orden)
                             <tr>
                                 <td>
                                     <a href="{{ route('ordenlaboratorio.show', $orden->id) }}">

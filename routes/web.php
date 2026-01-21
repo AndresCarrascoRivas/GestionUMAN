@@ -24,7 +24,7 @@ Route::get('/ordenfaena/exportar', [OrdenFaenaController::class, 'exportarExcel'
 Route::resource('ordenfaena', OrdenFaenaController::class);
 Route::get('ordenfaena/{id}/pdf', [OrdenFaenaController::class, 'descargarPDF'])->name('ordenfaena.pdf');
 
-Route::resource('equiposUman', EquipoUmanController::class)->except(['destroy']);
+Route::resource('equiposUman', EquipoUmanController::class)->parameters(['equiposUman' => 'equipoUman',])->except(['destroy']);
 Route::get('/equipos-uman/export', [EquipoUmanController::class, 'export'])->name('equiposUman.export');
 Route::get('/equiposuman/{serial}', [EquipoUmanController::class, 'getData'])
     ->name('equiposuman.getData');
@@ -33,8 +33,7 @@ Route::resource('tecnicos', TecnicoController::class);
 
 Route::resource('faenas', FaenaController::class);
 
-Route::resource('equiposUman', EquipoUmanController::class)
-    ->parameters(['equiposUman' => 'equipoUman',])->except(['destroy']);
+Route::resource('equiposmineros', EquipoMineroController::class);
 Route::get('/equipos-mineros/{faena}', [EquipoMineroController::class, 'getByFaena'])
     ->name('equiposmineros.getByFaena');
 

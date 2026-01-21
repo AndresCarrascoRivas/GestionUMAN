@@ -2,7 +2,7 @@
     <div class="container py-4">
         <h1 class="mb-4">Formulario para ingresar un equipo</h1>
 
-        <form action="{{ route('equiposUman.store') }}" method="POST" class="row g-3">
+        <form action="{{ route('equiposUman.store') }}" method="POST" class="row g-3" novalidate>
             @csrf
 
             @include('equiposUman._form')

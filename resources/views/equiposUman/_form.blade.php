@@ -2,18 +2,18 @@
 
     <!-- Serial -->
     <div class="col-md-4">
-        <label for="serial" class="form-label">Serial</label>
+        <label for="serial" class="form-label">Serial*</label>
         <input type="text" name="serial" id="serial"
             class="form-control form-control-sm @error('serial') is-invalid @enderror"
-            value="{{ old('serial', $equipoUman->serial ?? '') }}" required>
+            value="{{ old('serial', $equipoUman->serial ?? '') }}" >
         @error('serial')
-            <div class="invalid-feedback">{{ $message }}</div>
+            <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
     </div>
 
     <!-- Técnico -->
     <div class="col-md-4">
-        <label for="tecnico_id" class="form-label">Técnico asignado</label>
+        <label for="tecnico_id" class="form-label">Técnico asignado*</label>
         <select name="tecnico_id" id="tecnico_id"
             class="form-select form-select-sm @error('tecnico_id') is-invalid @enderror" required>
             <option value="">Seleccione un técnico</option>
@@ -29,9 +29,9 @@
         @enderror
     </div>
 
-        <!-- Faena -->
+        <!-- Lugar -->
     <div class="col-md-4">
-        <label for="faena_id" class="form-label">Faena</label>
+        <label for="faena_id" class="form-label">Lugar Actual*</label>
         <select name="faena_id" id="faena_id"
             class="form-select form-select-sm @error('faena_id') is-invalid @enderror">
             <option value="">-- Selecciona una faena --</option>
@@ -74,7 +74,7 @@
 
     <!-- Versión UMAN -->
     <div class="col-md-4">
-        <label for="uman_version_id" class="form-label">Versión UMAN</label>
+        <label for="uman_version_id" class="form-label">Versión UMAN*</label>
         <select name="uman_version_id" id="uman_version_id"
             class="form-select form-select-sm @error('uman_version_id') is-invalid @enderror" required>
             <option value="">Seleccione versión UMAN</option>
@@ -92,7 +92,7 @@
 
     <!-- Imagen SD -->
     <div class="col-md-4">
-        <label for="version_sd_id" class="form-label">Imagen SD</label>
+        <label for="version_sd_id" class="form-label">Imagen SD*</label>
         <select name="version_sd_id" id="version_sd_id"
             class="form-select form-select-sm @error('version_sd_id') is-invalid @enderror" required>
             <option value="">Seleccione versión SD</option>
@@ -110,7 +110,7 @@
 
     <!-- PCB UMAN -->
     <div class="col-md-4">
-        <label for="pcb_uman_id" class="form-label">PCB UMAN</label>
+        <label for="pcb_uman_id" class="form-label">PCB UMAN*</label>
         <select name="pcb_uman_id" id="pcb_uman_id"
             class="form-select form-select-sm @error('pcb_uman_id') is-invalid @enderror" required>
             <option value="">Seleccione PCB UMAN</option>
@@ -218,7 +218,7 @@
 
     <!-- Fecha de Fabricación -->
     <div class="col-md-4">
-        <label for="fecha_fabricacion" class="form-label">Fecha de Fabricación</label>
+        <label for="fecha_fabricacion" class="form-label">Fecha de Fabricación*</label>
         <input type="date" name="fecha_fabricacion" id="fecha_fabricacion"
             class="form-control form-control-sm @error('fecha_fabricacion') is-invalid @enderror"
             value="{{ old('fecha_fabricacion') }}">
