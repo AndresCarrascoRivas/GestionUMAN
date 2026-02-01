@@ -107,9 +107,10 @@ class OrdenLaboratorioController extends Controller
         $umanVersions = VersionUman::pluck('name', 'id');
         $versionSds   = VersionSd::pluck('version', 'id');
         $pcbUmans     = PcbUman::pluck('name', 'id');
+        $fallas = Falla::pluck('name', 'id');
 
         return view('ordenlaboratorio.edit', compact('ordenlaboratorio', 'equiposUMAN', 'tecnicos',
-         'faenas', 'equiposMineros', 'umanVersions', 'versionSds' ,'pcbUmans'));
+         'faenas', 'equiposMineros', 'umanVersions', 'versionSds' ,'pcbUmans'. 'fallas'));
     }
 
     public function update(UpdateOrdenLaboratorioRequest $request, OrdenLaboratorio $ordenlaboratorio)

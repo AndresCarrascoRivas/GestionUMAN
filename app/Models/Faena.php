@@ -10,6 +10,11 @@ class Faena extends Model
 
     protected $fillable = ['name'];
 
+    public function conexiones()
+    {
+        return $this->hasMany(Conexion::class);
+    }
+
     public function ordenesFaena()
     {
         return $this->hasMany(OrdenFaena::class);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckFaenasController;
+use App\Http\Controllers\ConexionController;
 use App\Http\Controllers\EquipoMineroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,10 @@ Route::get('/equipos-mineros/{faena}', [EquipoMineroController::class, 'getByFae
     ->name('equiposmineros.getByFaena');
 
 Route::resource('checkfaenas', CheckFaenasController::class);
+
+Route::resource('conexiones', ConexionController::class)->parameters([
+    'conexiones' => 'conexion'
+]);
 
 Route::resource('pcbuman', PcbUmanController::class);
 

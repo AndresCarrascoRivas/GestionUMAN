@@ -9,8 +9,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link active" href="/">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('faenas.index') }}">Faenas</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('tecnicos.index') }}">Técnicos</a></li>
+
+                        <!-- ✅ Dropdown Datos faenas -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="componentesDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Datos faenas
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="componentesDropdown">
+            <li class="nav-item"><a class="nav-link" href="{{ route('faenas.index') }}">Faenas</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('conexiones.index') }}">Conexiones</a></li>
+          </ul>
+        </li>
 
                 <!-- ✅ Dropdown Componentes -->
         <li class="nav-item dropdown">
@@ -42,7 +53,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="faenaDropdown" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">
-            Faena
+            Faenas UMAN
           </a>
           <ul class="dropdown-menu" aria-labelledby="faenaDropdown">
             <li class="nav-item"><a class="nav-link" href="{{ route('equiposmineros.index') }}">Equipos mineros</a></li>

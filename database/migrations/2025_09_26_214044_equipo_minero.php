@@ -14,10 +14,17 @@ return new class extends Migration
         Schema::create('equipo_minero', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('faena_id')->nullable();
-            $table->integer('antena_rf')->nullable();
-            $table->integer('antena_gps')->nullable();
-            $table->foreign('faena_id')->references('id')->on('faenas')->onDelete('set null');
+            $table->string('modelo');
+            $table->string('tipo');
+            $table->foreignId('faena_id')->constrained('faenas');
+            $table->string('uman_serial')->nullable()->unique();
+            $table->string('posicion_equipo_uman')->nullable();
+            $table->boolean('dcdc')->default(false);
+            $table->boolean('puesta_tierra')->default(false);
+            $table->decimal('antena_rf_mt')->nullable();
+            $table->decimal('antena_gps_mt')->nullable();
+            $table->decimal('hmi_mt')->nullable();
+            $table->decimal('cable_alimentacion_mt')->nullable();
             $table->timestamps();
         });
     }
