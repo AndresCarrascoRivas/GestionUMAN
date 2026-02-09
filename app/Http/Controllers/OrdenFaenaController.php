@@ -12,6 +12,7 @@ use App\Models\Tecnico;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\OrdenesFaenaExport;
+use App\Models\Falla;
 use Maatwebsite\Excel\Facades\Excel;
 
 class OrdenFaenaController extends Controller
@@ -41,7 +42,8 @@ class OrdenFaenaController extends Controller
         $tecnicos = Tecnico::select('id', 'name')->get();
         $faenas = Faena::select('id', 'name')->get();
         $equiposUman = EquipoUman::select('serial')->orderBy('serial')->get();
-        return view ('ordenfaena.create', compact('equiposMinero', 'tecnicos', 'faenas', 'equiposUman'));
+        $fallas = Falla::pluck('name', 'id');
+        return view ('ordenfaena.create', compact('equiposMinero', 'tecnicos', 'faenas', 'equiposUman', 'fallas'));
     }
 
     public function store(StoreOrdenFaenaRequest $request)
@@ -63,8 +65,9 @@ class OrdenFaenaController extends Controller
         $tecnicos = Tecnico::select('id', 'name')->get();
         $faenas = Faena::select('id', 'name')->get();
         $equiposUman = EquipoUman::select('serial')->orderBy('serial')->get();
+        $fallas = Falla::pluck('name', 'id');
 
-        return view('ordenfaena.edit', compact('ordenfaena', 'equiposMinero', 'tecnicos', 'faenas', 'equiposUman'));
+        return view('ordenfaena.edit', compact('ordenfaena', 'equiposMinero', 'tecnicos', 'faenas', 'equiposUman', 'fallas'));
     }
 
     public function update(UpdateOrdenFaenaRequest $request, OrdenFaena $ordenfaena)

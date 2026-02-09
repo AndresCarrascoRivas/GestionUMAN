@@ -22,7 +22,7 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>Nombre</th>
+                    <th>Version</th>
                     <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>

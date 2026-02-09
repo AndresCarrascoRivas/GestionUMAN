@@ -10,9 +10,17 @@ class EquipoMinero extends Model
 
     protected $fillable = [
         'name',
+        'modelo',
+        'tipo',
         'faena_id',
-        'antena_rf',
-        'antena_gps',
+        'uman_serial',
+        'posicion_equipo_uman',
+        'dcdc',
+        'puesta_tierra',
+        'antena_rf_mt',
+        'antena_gps_mt',
+        'hmi_mt',
+        'cable_alimentacion_mt',
     ];
 
     public function faena()

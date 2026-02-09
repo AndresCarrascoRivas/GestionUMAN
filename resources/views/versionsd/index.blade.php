@@ -5,7 +5,7 @@
     @section('content')
     <div class="container mt-4">
 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4"> Imagenes SD registradas</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4"> Imágenes SD registradas</h2>
 
         {{-- ✅ Mensaje de éxito --}}
         @if(session('success'))
@@ -26,8 +26,9 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>versión</th>
+                    <th>Versión</th>
                     <th>Descripción</th>
+                    <th>URL</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -36,6 +37,15 @@
                     <tr>
                         <td>{{ $version->version }}</td>
                         <td>{{ $version->descripcion ?? '—' }}</td>
+                        <td>
+                            @if($version->url)
+                                <a href="{{ $version->url }}" target="_blank" class="btn btn-sm btn-success">
+                                    ⬇️ Descargar
+                                </a>
+                            @else
+                                <span class="text-muted">Sin URL</span>
+                            @endif
+                        </td>
                         <td>
                             {{-- ✅ Botón Ver --}}
                             <a href="{{ route('versionsd.show', $version) }}" class="btn btn-sm btn-info text-white">

@@ -11,6 +11,7 @@ class VersionUman extends Model
     protected $fillable = [
         'name',
         'descripcion',
+        'url',
     ];
 
     public function equiposUman()

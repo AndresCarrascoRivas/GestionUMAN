@@ -23,9 +23,10 @@ class VersionSdController extends Controller
         $request->validate([
             'version' => 'required|string|max:255|unique:version_sds,version',
             'descripcion' => 'nullable|string',
+            'url' => 'nullable|url|max:2048',
         ]);
 
-        VersionSd::create($request->only(['version','descripcion']));
+        VersionSd::create($request->only(['version','descripcion', 'url']));
 
         return redirect()->route('versionsd.index')
                      ->with('success', 'Versión SD creada correctamente.');
@@ -46,9 +47,10 @@ class VersionSdController extends Controller
         $request->validate([
             'version' => 'required|string|max:255|unique:version_sds,version,' . $versionsd->id,
             'descripcion' => 'nullable|string',
+            'url' => 'nullable|url|max:2048',
         ]);
 
-        $versionsd->update($request->only(['version','descripcion']));
+        $versionsd->update($request->only(['version','descripcion', 'url']));
 
         return redirect()->route('versionsd.index')
                      ->with('success', 'Versión SD actualizada correctamente.');

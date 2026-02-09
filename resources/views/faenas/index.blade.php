@@ -23,6 +23,7 @@
             <thead class="table-light">
                 <tr>
                     <th>Nombre</th>
+                    <th>Conexiones</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -31,8 +32,25 @@
                     <tr>
                         <td>{{ $faena->nombre ?? $faena->name }}</td>
                         <td>
-                            <a href="{{ route('faenas.edit', $faena->id) }}" class="btn btn-sm btn-warning">✏️ Editar</a>
+                            @if($faena->conexiones->isEmpty())
+                                <span class="text-muted">Sin conexión</span>
+                            @else
+                                {{-- Mostrar tipos de conexión separados por coma --}}
+                                {{ $faena->conexiones->pluck('tipo')->map(fn($t) => ucfirst($t))->join(', ') }}
+                            @endif
+                        </td>
+                        <td>
+                            {{-- Link al show --}}
+                            <a href="{{ route('faenas.show', $faena->id) }}" class="btn btn-sm btn-info">
+                                🔎 Ver
+                            </a>
 
+                            {{-- Editar --}}
+                            <a href="{{ route('faenas.edit', $faena->id) }}" class="btn btn-sm btn-warning">
+                                ✏️ Editar
+                            </a>
+
+                            {{-- Eliminar --}}
                             <form action="{{ route('faenas.destroy', $faena->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar esta faena?')">
                                 @csrf
                                 @method('DELETE')

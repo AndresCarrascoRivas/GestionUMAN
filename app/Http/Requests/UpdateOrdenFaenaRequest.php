@@ -26,14 +26,26 @@ class UpdateOrdenFaenaRequest extends FormRequest
             'faena_id' => 'required|exists:faenas,id',
             'fecha_trabajo' => 'nullable|date',
             'equipo_minero_id'=> 'required',
-            'estado' => 'required|in:pendiente,en_proceso,completado',
+            'estado' => 'required|in:Pendiente,En proceso,Completado',
             'uman_serial' => 'required|string|exists:equipos_uman,serial',
             'cambio_uman' => 'required|boolean',
             'serial_nueva_uman' => ['nullable', 'required_if:cambio_uman,true', 'exists:equipos_uman,serial',],
-            'falla' => 'nullable|string|max:255',
-            'descripcion_falla' => 'nullable|string',
-            'detalle_reparacion' => 'nullable|string',
+            'falla_id' => [
+                'nullable',
+                'exists:fallas,id',
+                'required_if:cambio_uman,1',
+            ],
+
+            'descripcion_falla'   => 'nullable|string|max:1000',
+            'detalle_reparacion'  => 'nullable|string|max:2000',
+            'trabajo_realizado'   => 'nullable|string|max:1000',
+            'descripcion_trabajo' => 'nullable|string|max:2000',
             'fecha_ingreso' => 'nullable|date',
+            'imagen' => [
+                'nullable',
+                'image',
+                'max:2048', // 2MB
+            ],
         ];
     }
 }

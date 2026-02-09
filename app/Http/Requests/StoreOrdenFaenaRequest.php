@@ -37,8 +37,15 @@ class StoreOrdenFaenaRequest extends FormRequest
                 'min:5',
                 'exists:equipos_uman,serial',
             ],
-            'falla' => ['required', 'string', 'min:1'],
-            'descripcion_falla' => 'nullable|string',
+            'falla_id' => [
+                'nullable',
+                'exists:fallas,id',
+                'required_if:cambio_uman,1', // obligatorio si hay cambio UMAN
+            ],
+
+            'descripcion_falla' => 'nullable|string|max:1000',
+            'trabajo_realizado' => 'nullable|string|max:1000',
+            'descripcion_trabajo' => 'nullable|string|max:2000',
             'imagen' => ['nullable', 'image', 'max:2048'],
         ];
     }

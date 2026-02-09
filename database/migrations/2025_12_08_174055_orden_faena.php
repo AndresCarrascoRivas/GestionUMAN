@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('uman_serial');
             $table->boolean('cambio_uman')->default(false);
             $table->string('serial_nueva_uman')->nullable();
-            $table->string('falla')->nullable();
+            $table->foreignId('falla_id')->constrained('fallas')->nullable();
             $table->text('descripcion_falla')->nullable();
+            $table->string('trabajo_realizado')->nullable();
+            $table->text('descripcion_trabajo')->nullable();
             $table->string('imagen')->nullable();
             $table->timestamps();
 

@@ -36,10 +36,16 @@
                     <dd class="col-sm-8">{{ ucfirst($ordenfaena->estado) }}</dd>
 
                     <dt class="col-sm-4">Falla</dt>
-                    <dd class="col-sm-8">{{ $ordenfaena->falla ?? '—' }}</dd>
+                    <dd class="col-sm-8">{{ $ordenfaena->falla->name ?? '—' }}</dd>
 
                     <dt class="col-sm-4">Descripción de la Falla</dt>
                     <dd class="col-sm-8">{{ $ordenfaena->descripcion_falla ?? '—' }}</dd>
+
+                    <dt class="col-sm-4">Trabajo Realizado</dt>
+                    <dd class="col-sm-8">{{ $ordenfaena->trabajo_realizado }}</dd>
+
+                    <dt class="col-sm-4">Descripcion Trabajo</dt>
+                    <dd class="col-sm-8">{{ $ordenfaena->descripcion_trabajo }}</dd>
 
                     <dt class="col-sm-4">Imagen Adjunta</dt>
                     <dd class="col-sm-8">

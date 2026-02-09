@@ -5,7 +5,7 @@
     @section('content')
     <div class="container mt-4">
 
-        <h2 class="mb-4">🔍 Detalle del PCB UMAN</h2>
+        <h2 class="mb-4">🔍 Detalle de PCB UMAN</h2>
 
         <div class="card shadow-sm">
             <div class="card-body">

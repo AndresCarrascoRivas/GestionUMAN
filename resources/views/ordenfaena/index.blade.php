@@ -82,7 +82,7 @@
                         <td>{{ $orden->equipoMinero->name ?? '—' }}</td>
                         <td>{{ ucfirst($orden->faena?->name ?? '—') }}</td>
                         <td>{{ ucfirst($orden->estado) }}</td>
-                        <td>{{ ucfirst($orden->falla) }}</td>
+                        <td>{{ ucfirst(optional($orden->falla)->name ?? '—') }}</td>
                         <td>{{ ucfirst($orden->fecha_trabajo) }}</td>
                     </tr>
                 @empty

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('antena_rf')->default(true);
             $table->boolean('antena_gps')->default(true);
             $table->boolean('conexion_electrica')->default(true);
+            $table->boolean('comunicacion_servidor')->default(true);
             $table->boolean('sensores_internos')->default(true);
             $table->text('observacion')->nullable();
             $table->timestamps();

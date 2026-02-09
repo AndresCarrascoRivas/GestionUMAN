@@ -25,6 +25,18 @@
                             <td>{{ $versionuman->descripcion ?? '—' }}</td>
                         </tr>
                         <tr>
+                            <th>URL</th>
+                            <td>
+                                @if($versionuman->url)
+                                    <a href="{{ $versionuman->url }}" target="_blank" class="btn btn-success btn-sm">
+                                        ⬇️ Descargar archivo
+                                    </a>
+                                @else
+                                    <span class="text-muted">Sin URL</span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Creado</th>
                             <td>{{ $versionuman->created_at->format('d-m-Y H:i') }}</td>
                         </tr>
@@ -52,5 +64,4 @@
         </div>
 
     </div>
-
 </x-app-layout>

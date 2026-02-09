@@ -186,23 +186,50 @@
     </div>
 
     <!-- Falla -->
-    <div>
-        <label for="falla" class="block font-semibold">Falla</label>
-        <input type="text" name="falla" id="falla"
-            class="w-full px-2 py-1 border rounded @error('falla') is-invalid @enderror"
-            value="{{ old('falla', $ordenfaena->falla ?? '') }}">
-        @error('falla')
+    <div class="mt-3">
+        <label for="falla_id" class="block font-semibold">Falla</label>
+        <select name="falla_id" id="falla_id"
+            class="w-full px-3 py-2 text-lg border rounded select2 @error('falla_id') is-invalid @enderror">
+            <option value="">-- Selecciona una falla --</option>
+            @foreach($fallas as $id => $name)
+                <option value="{{ $id }}"
+                    {{ old('falla_id', $ordenfaena->falla_id ?? '') == $id ? 'selected' : '' }}>
+                    {{ $name }}
+                </option>
+            @endforeach
+        </select>
+        @error('falla_id')
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
     </div>
 
     <!-- Descripción de la falla -->
-    <div>
+    <div class="mt-3">
         <label for="descripcion_falla" class="block font-semibold">Descripción de la falla</label>
-        <textarea name="descripcion_falla" id="descripcion_falla"
-            class="w-full px-2 py-1 border rounded @error('descripcion_falla') is-invalid @enderror"
-            rows="3">{{ old('descripcion_falla', $ordenfaena->descripcion_falla ?? '') }}</textarea>
+        <textarea name="descripcion_falla" id="descripcion_falla" rows="3"
+            class="w-full px-2 py-1 border rounded @error('descripcion_falla') is-invalid @enderror">{{ old('descripcion_falla', $ordenfaena->descripcion_falla ?? '') }}</textarea>
         @error('descripcion_falla')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Trabajo realizado -->
+    <div class="mt-3">
+        <label for="trabajo_realizado" class="block font-semibold">Trabajo realizado</label>
+        <input type="text" name="trabajo_realizado" id="trabajo_realizado"
+            class="w-full px-2 py-1 border rounded @error('trabajo_realizado') is-invalid @enderror"
+            value="{{ old('trabajo_realizado', $ordenfaena->trabajo_realizado ?? '') }}">
+        @error('trabajo_realizado')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Descripción del trabajo -->
+    <div class="mt-3">
+        <label for="descripcion_trabajo" class="block font-semibold">Descripción del trabajo</label>
+        <textarea name="descripcion_trabajo" id="descripcion_trabajo" rows="3"
+            class="w-full px-2 py-1 border rounded @error('descripcion_trabajo') is-invalid @enderror">{{ old('descripcion_trabajo', $ordenfaena->descripcion_trabajo ?? '') }}</textarea>
+        @error('descripcion_trabajo')
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
     </div>
@@ -218,10 +245,25 @@
     </div>
 
 
-    {{-- Script para mostrar/ocultar campo de nueva UMAN --}}
+    {{-- Script para mostrar/ocultar campos según cambio UMAN --}}
     <script>
-        document.getElementById('cambio_uman').addEventListener('change', function() {
-            const container = document.getElementById('serial_nueva_uman_container');
-            container.classList.toggle('d-none', !this.checked);
-        });
+        const cambioUmanCheckbox      = document.getElementById('cambio_uman');
+        const nuevaUmanField          = document.getElementById('serial_nueva_uman').closest('div'); 
+        const fallaField              = document.getElementById('falla_id').closest('div'); 
+        const descripcionFallaField   = document.getElementById('descripcion_falla').closest('div'); 
+
+        function toggleUmanFields() {
+            if (cambioUmanCheckbox.checked) {
+                nuevaUmanField.style.display        = 'block';
+                fallaField.style.display            = 'block';
+                descripcionFallaField.style.display = 'block';
+            } else {
+                nuevaUmanField.style.display        = 'none';
+                fallaField.style.display            = 'none';
+                descripcionFallaField.style.display = 'none';
+            }
+        }
+
+        cambioUmanCheckbox.addEventListener('change', toggleUmanFields);
+        window.addEventListener('DOMContentLoaded', toggleUmanFields);
     </script>

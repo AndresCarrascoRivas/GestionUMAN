@@ -18,4 +18,9 @@ class Falla extends Model
         return $this->hasMany(OrdenLaboratorio::class);
     }
 
+    public function ordenesfaena()
+    {
+        return $this->hasMany(OrdenFaena::class);
+    }
+
 }

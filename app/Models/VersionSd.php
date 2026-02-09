@@ -11,6 +11,7 @@ class VersionSd extends Model
     protected $fillable = [
         'version',
         'descripcion',
+        'url',
     ];
 
     public function equiposUman()

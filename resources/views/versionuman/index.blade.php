@@ -1,7 +1,9 @@
 <x-app-layout>
 
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight"> Versiones UMAN registradas</h2>
+    @section('title', 'Listado de Versiones UMAN')
 
+    @section('content')
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight"> Versiones UMAN registradas</h2>
 
     <div class="container mt-4">
 
@@ -26,6 +28,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>URL</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -35,7 +38,15 @@
                         <td>{{ $version->name }}</td>
                         <td>{{ $version->descripcion ?? '—' }}</td>
                         <td>
-
+                            @if($version->url)
+                                <a href="{{ $version->url }}" target="_blank" class="btn btn-sm btn-success">
+                                    ⬇️ Descargar
+                                </a>
+                            @else
+                                <span class="text-muted">Sin URL</span>
+                            @endif
+                        </td>
+                        <td>
                             {{-- ✅ Botón Ver --}}
                             <a href="{{ route('versionuman.show', $version) }}" class="btn btn-sm btn-info text-white">
                                 👁️ Ver
@@ -55,7 +66,6 @@
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger">🗑️ Eliminar</button>
                             </form>
-
                         </td>
                     </tr>
                 @empty

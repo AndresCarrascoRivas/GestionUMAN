@@ -16,9 +16,11 @@ class OrdenFaena extends Model
         'estado',
         'uman_serial',
         'cambio_uman',
-        'serial_nueva_uman',
-        'falla',
+        'falla_id',
         'descripcion_falla',
+        'serial_nueva_uman',
+        'trabajo_realizado',
+        'descripcion_trabajo',
         'imagen'
     ];
 
@@ -43,8 +45,13 @@ class OrdenFaena extends Model
     }
 
     public function equipoMinero()
-{
-    return $this->belongsTo(EquipoMinero::class, 'equipo_minero_id');
-}
+    {
+        return $this->belongsTo(EquipoMinero::class, 'equipo_minero_id');
+    }
+
+    public function falla()
+    {
+        return $this->belongsTo(Falla::class);
+    }
 
 }

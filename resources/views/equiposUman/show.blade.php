@@ -70,19 +70,24 @@
                     <div class="col-md-6">
                         <strong>BAM:</strong> {{ $equipoUman->bam ? 'Sí' : 'No' }}
                     </div>
-                    <div class="col-md-6">
-                        <strong>Marca BAM:</strong> {{ $equipoUman->marca_bam ?? '—' }}
-                    </div>
                 </div>
 
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <strong>Chip:</strong> {{ $equipoUman->chip ?? '—' }}
+                @if($equipoUman->bam)
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <strong>Marca BAM:</strong> {{ $equipoUman->marca_bam ?? '—' }}
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <strong>IMEI Chip:</strong> {{ $equipoUman->imei_chip ?? '—' }}
+
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <strong>Chip:</strong> {{ $equipoUman->chip ?? '—' }}
+                        </div>
+                        <div class="col-md-6">
+                            <strong>IMEI Chip:</strong> {{ $equipoUman->imei_chip ?? '—' }}
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <div class="row mb-2">
                     <div class="col-md-6">

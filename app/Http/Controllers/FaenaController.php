@@ -45,6 +45,11 @@ class FaenaController extends Controller
         return redirect()->route('faenas.index')->with('success', 'Faena actualizada correctamente.');
     }
 
+    public function show(Faena $faena)
+    {
+        return view('faenas.show', compact('faena'));
+    }
+
     public function destroy(Faena $faena)
     {
         $faena->delete();

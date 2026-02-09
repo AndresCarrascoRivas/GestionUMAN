@@ -17,8 +17,20 @@
                             <td>{{ $versionsd->id }}</td>
                         </tr>
                         <tr>
-                            <th>Nombre</th>
-                            <td>{{ $versionsd->name }}</td>
+                            <th>Version</th>
+                            <td>{{ $versionsd->version }}</td>
+                        </tr>
+                        <tr>
+                            <th>URL</th>
+                            <td>
+                                @if($versionsd->url)
+                                    <a href="{{ $versionsd->url }}" target="_blank" class="btn btn-success btn-sm">
+                                        ⬇️ Descargar archivo
+                                    </a>
+                                @else
+                                    <span class="text-muted">Sin URL</span>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>Descripción</th>

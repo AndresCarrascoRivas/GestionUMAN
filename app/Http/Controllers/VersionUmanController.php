@@ -23,12 +23,13 @@ class VersionUmanController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
+            'url' => 'nullable|url|max:2048',
         ]);
 
-        VersionUman::create($request->all());
+        VersionUman::create($request->only(['name', 'descripcion', 'url']));
 
         return redirect()->route('versionuman.index')
-                         ->with('success', 'Versión UMAN creada correctamente.');
+                        ->with('success', 'Versión UMAN creada correctamente.');
     }
 
     public function show(VersionUman $versionuman)
@@ -46,12 +47,13 @@ class VersionUmanController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
+            'url' => 'nullable|url|max:2048', // ✅ validación correcta para URL
         ]);
 
-        $versionuman->update($request->all());
+        $versionuman->update($request->only(['name', 'descripcion', 'url']));
 
         return redirect()->route('versionuman.index')
-                         ->with('success', 'Versión UMAN actualizada correctamente.');
+                        ->with('success', 'Versión UMAN actualizada correctamente.');
     }
 
     public function destroy(VersionUman $versionuman)

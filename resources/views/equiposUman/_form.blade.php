@@ -74,7 +74,7 @@
 
     <!-- Versión UMAN -->
     <div class="col-md-4">
-        <label for="uman_version_id" class="form-label">Versión UMAN*</label>
+        <label for="uman_version_id" class="form-label">Versión UMAN.exe*</label>
         <select name="uman_version_id" id="uman_version_id"
             class="form-select form-select-sm @error('uman_version_id') is-invalid @enderror" required>
             <option value="">Seleccione versión UMAN</option>
@@ -227,21 +227,36 @@
         @enderror
     </div>
 
-        <!-- Script para mostrar campo UPS -->
+        <!-- Script para autocompletar campos raspberry y UPS -->
     <script>
-        const modeloUmanSelect = document.getElementById('modelo_uman');
-        const upsField = document.getElementById('upsField');
+        document.addEventListener('DOMContentLoaded', function () {
+            const modeloSelect = document.getElementById('modelo_uman');
+            const rpiInput = document.getElementById('rpi_version');
+            const upsInput = document.getElementById('ups_version');
+            const upsField = document.getElementById('upsField');
 
-        function toggleUpsField() {
-            if (modeloUmanSelect.value === 'UMAN BLUE') {
-                upsField.style.display = 'block';
-            } else {
-                upsField.style.display = 'none';
+            function actualizarCampos() {
+                const modelo = modeloSelect.value;
+
+                if (modelo === 'UMAN BLUE') {
+                    rpiInput.value = 'Raspberry Pi 3';
+                    upsInput.value = 'UPSBLUE';
+                    upsField.style.display = 'block'; // mostrar UPS
+                } else if (modelo === 'UMAN G8') {
+                    rpiInput.value = 'CM4';
+                    upsInput.value = ''; // no aplica UPS
+                    upsField.style.display = 'none'; // ocultar UPS
+                } else {
+                    rpiInput.value = '';
+                    upsInput.value = '';
+                    upsField.style.display = 'none';
+                }
             }
-        }
 
-        modeloUmanSelect.addEventListener('change', toggleUpsField);
-        window.addEventListener('DOMContentLoaded', toggleUpsField);
+            // Ejecutar al cargar y al cambiar
+            actualizarCampos();
+            modeloSelect.addEventListener('change', actualizarCampos);
+        });
     </script>
 
     <!-- Script para mostrar campos de bam -->

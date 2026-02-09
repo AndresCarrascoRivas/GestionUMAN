@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('equipo_minero', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('modelo');
-            $table->string('tipo');
+            $table->string('modelo')->nullable();
+            $table->string('tipo')->nullable();
             $table->foreignId('faena_id')->constrained('faenas');
             $table->string('uman_serial')->nullable()->unique();
             $table->string('posicion_equipo_uman')->nullable();
