@@ -7,23 +7,23 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item"><a class="nav-link active" href="/">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('tecnicos.index') }}">Técnicos</a></li>
 
-                        <!-- ✅ Dropdown Datos faenas -->
+        <!-- ✅ Dropdown Datos faenas -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="componentesDropdown" role="button"
+          <a class="nav-link dropdown-toggle" href="#" id="faenasDropdown" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">
             Datos faenas
           </a>
-          <ul class="dropdown-menu" aria-labelledby="componentesDropdown">
-            <li class="nav-item"><a class="nav-link" href="{{ route('faenas.index') }}">Faenas</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('conexiones.index') }}">Conexiones</a></li>
+          <ul class="dropdown-menu" aria-labelledby="faenasDropdown">
+            <li><a class="dropdown-item" href="{{ route('faenas.index') }}">Faenas</a></li>
+            <li><a class="dropdown-item" href="{{ route('conexiones.index') }}">Conexiones</a></li>
           </ul>
         </li>
 
-                <!-- ✅ Dropdown Componentes -->
+        <!-- ✅ Dropdown Componentes -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="componentesDropdown" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,30 +36,57 @@
           </ul>
         </li>
 
-                        <!-- ✅ Dropdown Laboratorio-->
+        <!-- ✅ Dropdown Laboratorio -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="laboratorioDropdown" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">
             Laboratorio
           </a>
           <ul class="dropdown-menu" aria-labelledby="laboratorioDropdown">
-            <li class="nav-item"><a class="nav-link" href="{{ route('fallas.index') }}">Fallas</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('ordenlaboratorio.index') }}">Órdenes Laboratorio</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('equiposUman.index') }}">Equipos UMAN</a></li>
+            <li><a class="dropdown-item" href="{{ route('fallas.index') }}">Fallas</a></li>
+            <li><a class="dropdown-item" href="{{ route('ordenlaboratorio.index') }}">Órdenes Laboratorio</a></li>
+            <li><a class="dropdown-item" href="{{ route('equiposUman.index') }}">Equipos UMAN</a></li>
           </ul>
         </li>
 
-                                <!-- ✅ Dropdown Faena-->
+        <!-- ✅ Dropdown Faena -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="faenaDropdown" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">
             Faenas UMAN
           </a>
           <ul class="dropdown-menu" aria-labelledby="faenaDropdown">
-            <li class="nav-item"><a class="nav-link" href="{{ route('equiposmineros.index') }}">Equipos mineros</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('ordenfaena.index') }}">Órdenes Faena</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('checkfaenas.index') }}">Check Faenas</a></li>
+            <li><a class="dropdown-item" href="{{ route('equiposmineros.index') }}">Equipos mineros</a></li>
+            <li><a class="dropdown-item" href="{{ route('ordenfaena.index') }}">Órdenes Faena</a></li>
+            <li><a class="dropdown-item" href="{{ route('checkfaenas.index') }}">Check Faenas</a></li>
           </ul>
+        </li>
+
+        <!-- ✅ Dropdown Usuarios -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Usuarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="usuariosDropdown">
+            <li><a class="dropdown-item" href="{{ route('users.index') }}">Listado de usuarios</a></li>
+            <li><a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- ✅ Perfil y Logout -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('profile.edit') }}">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-outline-danger btn-sm ms-2">
+              Cerrar sesión
+            </button>
+          </form>
         </li>
       </ul>
     </div>
