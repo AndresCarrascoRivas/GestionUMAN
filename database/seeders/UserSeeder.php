@@ -30,7 +30,8 @@ class UserSeeder extends Seeder
         $admin = User::firstOrCreate(
             ['email' => 'admin@uman.com'],
             [
-                'name' => 'Administrador',
+                'name' => 'Andres Carrasco',
+                'username' => 'acarrasco',
                 'password' => bcrypt('admin123'),
                 'telefono' => '999999999',
                 'cargo' => 'Administrador General',
@@ -41,7 +42,8 @@ class UserSeeder extends Seeder
         $tecnico = User::firstOrCreate(
             ['email' => 'tecnico@uman.com'],
             [
-                'name' => 'Técnico UMAN',
+                'name' => 'Gabriel Vera',
+                'username' => 'gvera',
                 'password' => bcrypt('tecnico123'),
                 'telefono' => '888888888',
                 'cargo' => 'Técnico',
@@ -52,7 +54,8 @@ class UserSeeder extends Seeder
         $supervisor = User::firstOrCreate(
             ['email' => 'supervisor@uman.com'],
             [
-                'name' => 'Supervisor UMAN',
+                'name' => 'Kristian Brinckmann',
+                'username' => 'kbrinckmann',
                 'password' => bcrypt('supervisor123'),
                 'telefono' => '777777777',
                 'cargo' => 'Supervisor',
